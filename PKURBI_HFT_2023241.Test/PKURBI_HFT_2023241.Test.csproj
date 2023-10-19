@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PKURBI_HFT_2023241.Logic\PKURBI_HFT_2023241.Logic.csproj" />
+    <ProjectReference Include="..\PKURBI_HFT_2023241.Models\PKURBI_HFT_2023241.Models.csproj" />
+    <ProjectReference Include="..\PKURBI_HFT_2023241.Repository\PKURBI_HFT_2023241.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
