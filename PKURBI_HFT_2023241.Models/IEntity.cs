@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PKURBI_HFT_2023241.Models
 {
-    internal interface IEntity<TId>
+    public interface IEntity<TId>
     {
         TId Id { get; set; }
     }

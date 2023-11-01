@@ -8,11 +8,20 @@ using System.Threading.Tasks;
 
 namespace PKURBI_HFT_2023241.Models
 {
-    [Table("Salespeople")]
-    internal class Salepeople : Entity
+    public class Tenant
     {
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public override int Id { get; set; }
+        [Key]
+        public int TenantId { get; set; }
+
+        [Required]
+        public string name;
+
+        [Required]
+        public string adress;
+
+        [Required]
+        [MaxLength(11)]
+        public int phone;
     }
 }
