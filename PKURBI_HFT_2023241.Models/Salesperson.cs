@@ -31,5 +31,13 @@ namespace PKURBI_HFT_2023241.Models
         {
             Properties = new HashSet<Property>();
         }
+
+        public Salesperson(string line)
+        {
+             string[] split = line.Split('#');
+            Name = split[0];
+            Age = int.Parse(split[1]);
+            Properties = new HashSet<Property>();
+        }
     }
 }

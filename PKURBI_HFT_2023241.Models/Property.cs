@@ -15,7 +15,7 @@ namespace PKURBI_HFT_2023241.Models
 
         [Required]
         [StringLength(100)] 
-        public string PropAdress { get; set; }
+        public string PropCity { get; set; }
 
         [Required]
         public double PropValue { get; set; }
@@ -28,5 +28,18 @@ namespace PKURBI_HFT_2023241.Models
         public int TenantId { get; set; }
 
         public virtual Tenant Tenant { get; set; }
+
+        public Property()
+        {
+            
+        }
+
+        public Property(string line)
+        {
+            string[] split = line.Split('#');
+            PropCity = split[0];
+            PropValue = double.Parse(split[1]);
+            BasicArea = double.Parse(split[2]);
+        }
     }
 }

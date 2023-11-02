@@ -45,6 +45,8 @@ namespace PKURBI_HFT_2023241.Repository
                     .WithMany(Tenant => Tenant.Properties)
                     .HasForeignKey(property => property.TenantId)
                     .OnDelete(DeleteBehavior.Cascade));
+
+
         }
     }
 }

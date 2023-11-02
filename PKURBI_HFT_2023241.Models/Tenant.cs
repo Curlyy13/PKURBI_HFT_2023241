@@ -22,6 +22,7 @@ namespace PKURBI_HFT_2023241.Models
 
         [Required]
         [MaxLength(11)]
+
         public int Phone {  get; set; }
 
         public int PropId { get; set; }
@@ -31,6 +32,15 @@ namespace PKURBI_HFT_2023241.Models
         public Tenant()
         {
                 Properties = new HashSet<Property>();
+        }
+
+        public Tenant(string line)
+        {
+            string[] split = line.Split('#');
+            Name = split[0];
+            Address = split[1];
+            Phone = int.Parse(split[2]);
+            Properties = new HashSet<Property>();
         }
     }
 }
