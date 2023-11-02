@@ -24,5 +24,9 @@ namespace PKURBI_HFT_2023241.Models
 
         public int SalesId { get; set; }
         public virtual Salesperson Salesperson { get; set; }
+
+        public int TenantId { get; set; }
+
+        public virtual Tenant Tenant { get; set; }
     }
 }

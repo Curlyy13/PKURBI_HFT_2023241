@@ -15,13 +15,22 @@ namespace PKURBI_HFT_2023241.Models
         public int TenantId { get; set; }
 
         [Required]
-        public string name;
+        public string Name { get; set; }
 
         [Required]
-        public string adress;
+        public string Address { get; set; }
 
         [Required]
         [MaxLength(11)]
-        public int phone;
+        public int Phone {  get; set; }
+
+        public int PropId { get; set; }
+
+        public ICollection<Property> Properties { get; set; }
+
+        public Tenant()
+        {
+                Properties = new HashSet<Property>();
+        }
     }
 }
