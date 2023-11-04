@@ -23,7 +23,7 @@ namespace PKURBI_HFT_2023241.Models
         [Required]
         public int Age { get; set; }
 
-        public int PropId;
+        public int PropId { get; set; }
 
         public virtual ICollection<Property> Properties { get; set; }
 
@@ -34,9 +34,11 @@ namespace PKURBI_HFT_2023241.Models
 
         public Salesperson(string line)
         {
-             string[] split = line.Split('#');
-            Name = split[0];
-            Age = int.Parse(split[1]);
+            string[] split = line.Split('#');
+            SalesId = int.Parse(split[0]);
+            Name = split[1];
+            Age = int.Parse(split[2]);
+            PropId = int.Parse(split[3]);
             Properties = new HashSet<Property>();
         }
     }

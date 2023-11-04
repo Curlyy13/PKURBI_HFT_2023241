@@ -18,9 +18,9 @@ namespace PKURBI_HFT_2023241.Models
         public string PropCity { get; set; }
 
         [Required]
-        public double PropValue { get; set; }
+        public double PropValue { get; set; } // $-ban
         [Required]
-        public double BasicArea { get; set; }
+        public double BasicArea { get; set; } //m2-ben
 
         public int SalesId { get; set; }
         public virtual Salesperson Salesperson { get; set; }
@@ -37,9 +37,12 @@ namespace PKURBI_HFT_2023241.Models
         public Property(string line)
         {
             string[] split = line.Split('#');
-            PropCity = split[0];
-            PropValue = double.Parse(split[1]);
-            BasicArea = double.Parse(split[2]);
+            PropId = int.Parse(split[0]);
+            PropCity = split[1];
+            PropValue = double.Parse(split[2]);
+            BasicArea = double.Parse(split[3]);
+            SalesId = int.Parse(split[4]);
+            TenantId = int.Parse(split[5]);
         }
     }
 }
