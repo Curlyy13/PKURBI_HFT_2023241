@@ -23,10 +23,11 @@ namespace PKURBI_HFT_2023241.Models
         public double BasicArea { get; set; } //m2-ben
 
         public int SalesId { get; set; }
+        [NotMapped]
         public virtual Salesperson Salesperson { get; set; }
 
         public int TenantId { get; set; }
-
+        [NotMapped]
         public virtual Tenant Tenant { get; set; }
 
         public Property()

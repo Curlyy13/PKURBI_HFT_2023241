@@ -15,6 +15,7 @@ namespace PKURBI_HFT_2023241.Models
         public int TenantId { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [Required]
@@ -23,7 +24,7 @@ namespace PKURBI_HFT_2023241.Models
         public int Phone {  get; set; }
 
         public int PropId { get; set; }
-
+        [NotMapped]
         public ICollection<Property> Properties { get; set; }
 
         public Tenant()
