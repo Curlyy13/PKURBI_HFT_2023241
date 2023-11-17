@@ -8,7 +8,7 @@ namespace PKURBI_HFT_2023241.Repository
 {
     public class AgencyDbContext : DbContext
     {
-        public DbSet<Property> properties { get; set; }
+        public DbSet<RealEstate> realEstates { get; set; }
         public DbSet<Tenant> tenants { get; set; }
         public DbSet<Salesperson> salespeople { get; set; }
 
@@ -31,34 +31,34 @@ namespace PKURBI_HFT_2023241.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //1 a többhöz kapcsolat : 1 Salesperson-nek több property-je  is lehet
-            modelBuilder.Entity<Property>(property => property
-                    .HasOne(property => property.Salesperson)
-                    .WithMany(Salesperson => Salesperson.Properties)
-                    .HasForeignKey(property => property.SalesId)
+            //1 a többhöz kapcsolat : 1 Salesperson-nek több realestate-je  is lehet
+            modelBuilder.Entity<RealEstate>(realestate => realestate
+                    .HasOne(realestate => realestate.Salesperson)
+                    .WithMany(Salesperson => Salesperson.Realestates)
+                    .HasForeignKey(realestate => realestate.SalesId)
                     .OnDelete(DeleteBehavior.Cascade));
 
 
-            //1 a többhöz kapcsolat : 1 Tenant-nak több propery-je is lehet
-            modelBuilder.Entity<Property>(property => property
-                    .HasOne(property => property.Tenant)
-                    .WithMany(Tenant => Tenant.Properties)
-                    .HasForeignKey(property => property.TenantId)
+            //1 a többhöz kapcsolat : 1 Tenant-nak több realestate-je is lehet
+            modelBuilder.Entity<RealEstate>(realestate => realestate
+                    .HasOne(realestate => realestate.Tenant)
+                    .WithMany(Tenant => Tenant.Realestates)
+                    .HasForeignKey(realestate => realestate.TenantId)
                     .OnDelete(DeleteBehavior.Cascade));
 
             //Tesztadatok feltöltése
-            //Formátum : "PropId#Város#Érték#Alapterület#SalesID#TenantId"
-            modelBuilder.Entity<Property>().HasData(new Property[]
+            //Formátum : "RealEstateId#Város#Érték#Alapterület#SalesID#TenantId"
+            modelBuilder.Entity<RealEstate>().HasData(new RealEstate[]
                 {
-                new Property("1#Budapest#265000#150#2#1"),
-                new Property("2#Washington#1200000#200#5#3"),
-                new Property("3#Roma#200000#80#3#6"),
-                new Property("4#Budapest#100000#60#7#5"),
-                new Property("5#Berlin#800000#140#6#2"),
-                new Property("6#London#900000#120#8#9"),
-                new Property("7#London#900000#120#5#4"),
-                new Property("8#London#900000#120#3#7"),
-                new Property("9#London#900000#120#2#8")
+                new RealEstate("1#Budapest#265000#150#2#1"),
+                new RealEstate("2#Washington#1200000#200#5#3"),
+                new RealEstate("3#Roma#200000#80#3#6"),
+                new RealEstate("4#Budapest#100000#60#7#5"),
+                new RealEstate("5#Berlin#800000#140#6#2"),
+                new RealEstate("6#London#900000#120#8#9"),
+                new RealEstate("7#London#900000#120#5#4"),
+                new RealEstate("8#London#900000#120#3#7"),
+                new RealEstate("9#London#900000#120#2#8")
                 });
 
             //Formátum : "SalesId#Név#Kor#PropId"

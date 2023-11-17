@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PKURBI_HFT_2023241.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace PKURBI_HFT_2023241.Repository.Interfaces
 {
     internal interface IPropertyRepository
     {
-        void Create(Property property);
-        Property Read(int id);
-        IQueryable<Property> ReadAll();
-        void Update(Property property);
+        void Create(RealEstate realestate);
+        RealEstate Read(int id);
+        IQueryable<RealEstate> ReadAll();
+        void Update(RealEstate realestate);
         void Delete(int id);
     }
 }

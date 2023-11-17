@@ -10,7 +10,7 @@ namespace PKURBI_HFT_2023241.Repository.Interfaces
     internal interface ISalespersonRepository
     {
         void Create(Salesperson salesperson);
-        Property Read(int id);
+        Salesperson Read(int id);
         IQueryable<Salesperson> ReadAll();
         void Update(Salesperson salesperson);
         void Delete(int id);

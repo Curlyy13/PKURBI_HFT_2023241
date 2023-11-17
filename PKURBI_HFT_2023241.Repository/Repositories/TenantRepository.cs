@@ -10,9 +10,16 @@ namespace PKURBI_HFT_2023241.Repository.Repositories
 {
     internal class TenantRepository : ITenantRepository
     {
+        AgencyDbContext context;
+
+        public TenantRepository(AgencyDbContext context)
+        {
+            this.context = context;
+        }
         public void Create(Tenant tenant)
         {
-            throw new NotImplementedException();
+            this.context.tenants.Add(tenant);
+            this.context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -20,7 +27,7 @@ namespace PKURBI_HFT_2023241.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Property Read(int id)
+        public Tenant Read(int id)
         {
             throw new NotImplementedException();
         }

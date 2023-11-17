@@ -10,7 +10,7 @@ namespace PKURBI_HFT_2023241.Repository.Interfaces
     internal interface ITenantRepository
     {
         void Create(Tenant tenant);
-        Property Read(int id);
+        Tenant Read(int id);
         IQueryable<Tenant> ReadAll();
         void Update(Tenant tenant);
         void Delete(int id);

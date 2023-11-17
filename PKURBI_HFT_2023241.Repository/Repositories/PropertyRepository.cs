@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PKURBI_HFT_2023241.Models;
 using PKURBI_HFT_2023241.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,16 @@ namespace PKURBI_HFT_2023241.Repository.Repositories
 {
     internal class PropertyRepository : IPropertyRepository
     {
-        public void Create(Property property)
+        AgencyDbContext context;
+
+        public PropertyRepository(AgencyDbContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
+        }
+        public void Create(RealEstate realestate)
+        {
+            this.context.realEstates.Add(realestate);
+            this.context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -20,17 +28,17 @@ namespace PKURBI_HFT_2023241.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Property Read(int id)
+        public RealEstate Read(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Property> ReadAll()
+        public IQueryable<RealEstate> ReadAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Property property)
+        public void Update(RealEstate realestate)
         {
             throw new NotImplementedException();
         }

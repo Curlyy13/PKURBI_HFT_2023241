@@ -10,9 +10,16 @@ namespace PKURBI_HFT_2023241.Repository.Repositories
 {
     internal class SalespersonRepository : ISalespersonRepository
     {
+        AgencyDbContext context;
+
+        public SalespersonRepository(AgencyDbContext context)
+        {
+            this.context = context;
+        }
         public void Create(Salesperson salesperson)
         {
-            throw new NotImplementedException();
+            this.context.salespeople.Add(salesperson);
+            this.context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -20,7 +27,7 @@ namespace PKURBI_HFT_2023241.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Property Read(int id)
+        public Salesperson Read(int id)
         {
             throw new NotImplementedException();
         }

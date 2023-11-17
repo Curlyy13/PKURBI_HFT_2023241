@@ -25,11 +25,11 @@ namespace PKURBI_HFT_2023241.Models
 
         public int PropId { get; set; }
         [NotMapped]
-        public virtual ICollection<Property> Properties { get; set; }
+        public virtual ICollection<RealEstate> Realestates { get; set; }
 
         public Salesperson()
         {
-            Properties = new HashSet<Property>();
+            Realestates = new HashSet<RealEstate>();
         }
 
         public Salesperson(string line)
@@ -39,7 +39,7 @@ namespace PKURBI_HFT_2023241.Models
             Name = split[1];
             Age = int.Parse(split[2]);
             PropId = int.Parse(split[3]);
-            Properties = new HashSet<Property>();
+            Realestates = new HashSet<RealEstate>();
         }
     }
 }
