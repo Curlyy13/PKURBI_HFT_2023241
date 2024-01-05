@@ -1,4 +1,5 @@
 ﻿using PKURBI_HFT_2023241.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PKURBI_HFT_2023241.Logic
@@ -9,6 +10,7 @@ namespace PKURBI_HFT_2023241.Logic
         void Delete(int id);
         Tenant Read(int id);
         IQueryable<Tenant> ReadAll();
+        IEnumerable<Tenants> TenantsByCity(string city);
         void Update(Tenant entity);
     }
 }

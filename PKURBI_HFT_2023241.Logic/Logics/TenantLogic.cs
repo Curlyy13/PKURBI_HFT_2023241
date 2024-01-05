@@ -3,6 +3,7 @@ using PKURBI_HFT_2023241.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,5 +41,25 @@ namespace PKURBI_HFT_2023241.Logic
         {
             repo.Update(entity);
         }
+
+        //NON-CRUD 5
+        //Returns the tenants ordered by cities
+
+        public IEnumerable<Tenants> TenantsByCity(string city)
+        {
+            return from x in this.repo.ReadAll()
+                   group x by x.Name into g
+                   select new Tenants()
+                   {
+                       City = g.Select(t => t.Realestates.Where(x => x.RealEstateCity == city)),
+                       Name = g.Key,
+                   };
+        }
+    }
+
+    public class Tenants
+    {
+        public IEnumerable<IEnumerable<RealEstate>> City { get; set; }
+        public string Name { get; set; }
     }
 }

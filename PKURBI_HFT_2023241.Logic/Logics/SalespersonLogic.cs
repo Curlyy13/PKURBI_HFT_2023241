@@ -3,6 +3,8 @@ using PKURBI_HFT_2023241.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,5 +48,26 @@ namespace PKURBI_HFT_2023241.Logic
         {
             this.repo.Update(entity);
         }
+
+        //NON-CRUD 4
+        //Returns the top 3 salesman who has the most real estates
+
+        public IEnumerable<MostRealEstate> MostRealEstates()
+        {
+            var result = from x in this.repo.ReadAll()
+                         group x by x.Name into g
+                         orderby g descending
+                         select new MostRealEstate()
+                         {
+                             Name = g.Key,
+                         };
+            var finalized = result.Take(3);
+            return finalized;
+        }
+    }
+
+    public class MostRealEstate
+    {
+        public string Name { get; set; }
     }
 }

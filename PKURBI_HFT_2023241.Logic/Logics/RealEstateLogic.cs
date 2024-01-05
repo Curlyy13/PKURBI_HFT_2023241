@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace PKURBI_HFT_2023241.Logic
 {
@@ -61,7 +62,7 @@ namespace PKURBI_HFT_2023241.Logic
         }
 
         //NON-CRUD 2
-        //Return the basic informations about the realestate with the contant of the salesperson
+        //Return the basic informations about the realestate with the salesperson name and the contact of the renter
 
         public IEnumerable<BasicInfo> BasicInformation(int id)
         {
@@ -77,8 +78,26 @@ namespace PKURBI_HFT_2023241.Logic
                        TenantContact = x.Tenant.Phone
                    };
         }
+
+        //NON-CRUD 3
+        //Returns the avarage prices grouped by cities
+        public IEnumerable<AvgPrices> AvgPriceByCity()
+        {
+            return from x in this.repo.ReadAll()
+                   group x by x.RealEstateCity into g
+                   select new AvgPrices()
+                   {
+                       City = g.Key,
+                       AvgPrice = g.Sum(t => t.RealEstateValue)
+                   };
+        }
     }
 
+    public class AvgPrices
+    {
+        public object City { get; set; }
+        public object AvgPrice { get; set; }
+    }
     public class BasicInfo
     {
         public string Location { get; set; }
