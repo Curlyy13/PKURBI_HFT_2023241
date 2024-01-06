@@ -78,15 +78,15 @@ namespace PKURBI_HFT_2023241.Repository
             //Formátum : "TenantID#Name#Phone#PropID"
             modelBuilder.Entity<Tenant>().HasData(new Tenant[]
             {
-                new Tenant("1#Olivia Briggs#7088422114#5"),
-                new Tenant("2#Bennett Parks#70218552514#2"),
-                new Tenant("3#Les Kain#7085475114#3"),
-                new Tenant("4#Brigham Glisson#7087482912#8"),
-                new Tenant("5#Edwin Porter#8835214478#1"),
-                new Tenant("6#Irene Thompson#7185324364#4"),
-                new Tenant("7#Oriel Hall#9034728491#9"),
-                new Tenant("8#William Wood#8143858122#6"),
-                new Tenant("9#Laurence Mccoy#3654223414#7")
+                new Tenant("1#Olivia Briggs#708842211#5"),
+                new Tenant("2#Bennett Parks#702185525#2"),
+                new Tenant("3#Les Kain#708547511#3"),
+                new Tenant("4#Brigham Glisson#708748291#8"),
+                new Tenant("5#Edwin Porter#883521447#1"),
+                new Tenant("6#Irene Thompson#718532364#4"),
+                new Tenant("7#Oriel Hall#903472841#9"),
+                new Tenant("8#William Wood#814385122#6"),
+                new Tenant("9#Laurence Mccoy#365423414#7")
             });
         }
     }

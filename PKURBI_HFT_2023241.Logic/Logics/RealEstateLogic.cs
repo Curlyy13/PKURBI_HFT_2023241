@@ -4,6 +4,7 @@ using PKURBI_HFT_2023241.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,11 @@ namespace PKURBI_HFT_2023241.Logic
 
         public void Create(RealEstate entity)
         {
+            if (entity.BasicArea <= 20)
+            {
+                throw new ArgumentException("The RealEstate with the following ID couldn't be created because" +
+                    $"the Area is too small: {entity.RealEstateId}");
+            }
             repo.Create(entity);
         }
 
@@ -95,8 +101,20 @@ namespace PKURBI_HFT_2023241.Logic
 
     public class AvgPrices
     {
-        public object City { get; set; }
-        public object AvgPrice { get; set; }
+        public string City { get; set; }
+        public double AvgPrice { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            AvgPrices b = obj as AvgPrices;
+            if (b == null) { return false; }
+            else {return this.City == b.City && this.AvgPrice == b.AvgPrice;}
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.City, this.AvgPrice);
+        }
     }
     public class BasicInfo
     {
@@ -106,5 +124,19 @@ namespace PKURBI_HFT_2023241.Logic
         public string Salesperson { get; set; }
         public string Tenant { get; set; }
         public int TenantContact { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            BasicInfo b = obj as BasicInfo;
+            if (b == null) { return false;}
+            else {
+                return this.Location == b.Location && this.Value == b.Value && this.Area == b.Area && this.Salesperson == b.Salesperson && this.Tenant == b.Tenant && this.TenantContact == b.TenantContact;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Location, this.Value, this.Area, this.Salesperson, this.Tenant, this.TenantContact);
+        }
     }
 }

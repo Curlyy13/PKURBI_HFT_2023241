@@ -12,6 +12,12 @@ namespace PKURBI_HFT_2023241.Logic
     public class TenantLogic : ITenantLogic
     {
         IRepository<Tenant> repo;
+
+        public TenantLogic(IRepository<Tenant> repo)
+        {
+            this.repo = repo;
+        }
+
         public void Create(Tenant entity)
         {
             repo.Create(entity);

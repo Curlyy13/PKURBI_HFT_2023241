@@ -24,6 +24,7 @@ namespace PKURBI_HFT_2023241.Models
         public int Phone {  get; set; }
 
         public int PropId { get; set; }
+
         [NotMapped]
         public ICollection<RealEstate> Realestates { get; set; }
 
