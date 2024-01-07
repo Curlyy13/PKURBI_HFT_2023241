@@ -20,6 +20,11 @@ namespace PKURBI_HFT_2023241.Logic
 
         public void Create(Tenant entity)
         {
+            if (entity.Phone.ToString().Length != 9)
+            {
+                throw new ArgumentException($"The Tenant with the following ID coulnd't be created because the phone" +
+                    $"length must be 9 characters: {entity.TenantId}");
+            }
             repo.Create(entity);
         }
 
@@ -49,23 +54,42 @@ namespace PKURBI_HFT_2023241.Logic
         }
 
         //NON-CRUD 5
-        //Returns the tenants ordered by cities
+        //Returns the tenants ordered by the count of the RealEstates they rent
 
-        public IEnumerable<Tenants> TenantsByCity(string city)
+        public IEnumerable<Tenants> TenantsByCity()
         {
             return from x in this.repo.ReadAll()
                    group x by x.Name into g
+                   orderby g.Select(t => t.Realestates.Count()).Sum() ascending
                    select new Tenants()
                    {
-                       City = g.Select(t => t.Realestates.Where(x => x.RealEstateCity == city)),
                        Name = g.Key,
+                       EstateCount = g.Select(t => t.Realestates.Count()).Sum()
                    };
         }
     }
 
     public class Tenants
     {
-        public IEnumerable<IEnumerable<RealEstate>> City { get; set; }
+        public int EstateCount { get; set; }
         public string Name { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Tenants b = obj as Tenants;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.EstateCount == b.EstateCount;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name,this.EstateCount);
+        }
     }
 }

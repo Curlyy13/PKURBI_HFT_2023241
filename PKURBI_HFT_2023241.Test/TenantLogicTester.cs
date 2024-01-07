@@ -22,17 +22,120 @@ namespace PKURBI_HFT_2023241.Test
             mockTenantRepo = new Mock<IRepository<Tenant>>();
             mockTenantRepo.Setup(t => t.ReadAll()).Returns(new List<Tenant>()
             {
-                new Tenant("1#Olivia Briggs#708842211#5"),
-                new Tenant("2#Bennett Parks#702185525#2"),
-                new Tenant("3#Les Kain#708547511#3"),
-                new Tenant("4#Brigham Glisson#708748291#8"),
-                new Tenant("5#Edwin Porter#883521447#1"),
-                new Tenant("6#Irene Thompson#718532364#4"),
-                new Tenant("7#Oriel Hall#903472841#9"),
-                new Tenant("8#William Wood#814385122#6"),
-                new Tenant("9#Laurence Mccoy#365423414#7")
+                new Tenant()
+                {
+                    TenantId = 1,
+                    Name = "Olivia Briggs",
+                    Phone = 708842211,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                            RealEstateId = 1,
+                            RealEstateCity = "Budapest",
+                            RealEstateValue = 350000
+                        },
+                        new RealEstate()
+                        {
+                            RealEstateId = 2,
+                            RealEstateCity = "Roma",
+                            RealEstateValue = 250000
+                        },
+                    }
+                },
+                new Tenant()
+                {
+                    TenantId = 2,
+                    Name = "Bennett Parks",
+                    Phone = 702185525,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                            RealEstateId = 3,
+                            RealEstateCity = "Paris",
+                            RealEstateValue = 500000
+                        },
+                        new RealEstate()
+                        {
+                            RealEstateId = 4,
+                            RealEstateCity = "Budapest",
+                            RealEstateValue = 100000
+                        },
+                        new RealEstate()
+                        {
+                            RealEstateId = 7,
+                            RealEstateCity = "Budapest",
+                            RealEstateValue = 170000
+                        },
+                    }
+                },
+                new Tenant()
+                {
+                    TenantId = 3,
+                    Name = "Les Kain",
+                    Phone = 708547511,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                            RealEstateId = 5,
+                            RealEstateCity = "Paris",
+                            RealEstateValue = 200000
+                        },
+                    }
+                },
+                new Tenant()
+                {
+                    TenantId = 4,
+                    Name = "Brigham Glisson",
+                    Phone = 708748291,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                            RealEstateId = 6,
+                            RealEstateCity = "Berlin",
+                            RealEstateValue = 200000
+                        },
+                    }
+                },
             }.AsQueryable());
             logic = new TenantLogic(mockTenantRepo.Object);
+        }
+
+        [Test]
+        public void TenantCreateSuccessTest()
+        {
+            var newTenant = new Tenant() { Phone = 123456789 };
+            logic.Create(newTenant);
+            mockTenantRepo.Verify(t => t.Create(newTenant), Times.Once);
+        }
+        [Test]
+        public void TenantCreateFailTest()
+        {
+            var newTenant = new Tenant() { Phone = 12345678 };
+            try
+            {
+                logic.Create(newTenant);
+            }
+            catch (Exception)
+            {
+            }
+            mockTenantRepo.Verify(t => t.Create(newTenant), Times.Never);
+        }
+        [Test]
+        public void TenantsByCityTest()
+        {
+            var expected = new List<Tenants>() 
+            {
+                new Tenants() {Name="Les Kain", EstateCount=1},
+                new Tenants() {Name="Brigham Glisson", EstateCount=1},
+                new Tenants() {Name="Olivia Briggs", EstateCount=2},
+                new Tenants() {Name="Bennett Parks", EstateCount=3},
+            };
+            var actual = logic.TenantsByCity();
+            Assert.That(expected, Is.EqualTo(actual));
         }
     }
 }

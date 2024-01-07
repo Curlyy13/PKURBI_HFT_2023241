@@ -23,8 +23,6 @@ namespace PKURBI_HFT_2023241.Models
 
         public int Phone {  get; set; }
 
-        public int PropId { get; set; }
-
         [NotMapped]
         public ICollection<RealEstate> Realestates { get; set; }
 
@@ -39,7 +37,6 @@ namespace PKURBI_HFT_2023241.Models
             TenantId = int.Parse(split[0]);
             Name = split[1];
             Phone = int.Parse(split[2]);
-            PropId = int.Parse(split[3]);
             Realestates = new HashSet<RealEstate>();
         }
     }

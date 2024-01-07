@@ -39,11 +39,12 @@ namespace PKURBI_HFT_2023241.Logic
         public RealEstate Read(int id)
         {
             var estate = repo.Read(id);
-            if (estate == null)
+            if (repo.Read(id).RealEstateId.Equals(null))
             {
                 throw new ArgumentException($"The RealEstate with the following ID doesn't exist: {id}");
             }
-            return estate;
+            ;
+            return repo.Read(id);
         }
 
         public IQueryable<RealEstate> ReadAll()

@@ -61,32 +61,32 @@ namespace PKURBI_HFT_2023241.Repository
                 new RealEstate("9#London#900000#120#2#8")
                 });
 
-            //Formátum : "SalesId#Név#Kor#PropId"
+            //Formátum : "SalesId#Név#Kor"
             modelBuilder.Entity<Salesperson>().HasData(new Salesperson[]
             {
-                new Salesperson("1#John Miller#30#3"),
-                new Salesperson("2#David Holmes#50#6"),
-                new Salesperson("3#Peter Parker#34#2"),
-                new Salesperson("4#Lázár Vilmos#42#1"),
-                new Salesperson("5#Kovács István#20#4"),
-                new Salesperson("6#Mike Cenat#24#7"),
-                new Salesperson("7#John Davis#23#8"),
-                new Salesperson("8#David D.#43#9"),
-                new Salesperson("9#Joe Trump#44#10"),
+                new Salesperson("1#John Miller#30"),
+                new Salesperson("2#David Holmes#50"),
+                new Salesperson("3#Peter Parker#34"),
+                new Salesperson("4#Lázár Vilmos#42"),
+                new Salesperson("5#Kovács István#20"),
+                new Salesperson("6#Mike Cenat#24"),
+                new Salesperson("7#John Davis#23"),
+                new Salesperson("8#David D.#43"),
+                new Salesperson("9#Joe Trump#44"),
             });
 
-            //Formátum : "TenantID#Name#Phone#PropID"
+            //Formátum : "TenantID#Name#Phone"
             modelBuilder.Entity<Tenant>().HasData(new Tenant[]
             {
-                new Tenant("1#Olivia Briggs#708842211#5"),
-                new Tenant("2#Bennett Parks#702185525#2"),
-                new Tenant("3#Les Kain#708547511#3"),
-                new Tenant("4#Brigham Glisson#708748291#8"),
-                new Tenant("5#Edwin Porter#883521447#1"),
-                new Tenant("6#Irene Thompson#718532364#4"),
-                new Tenant("7#Oriel Hall#903472841#9"),
-                new Tenant("8#William Wood#814385122#6"),
-                new Tenant("9#Laurence Mccoy#365423414#7")
+                new Tenant("1#Olivia Briggs#708842211"),
+                new Tenant("2#Bennett Parks#702185525"),
+                new Tenant("3#Les Kain#708547511"),
+                new Tenant("4#Brigham Glisson#708748291"),
+                new Tenant("5#Edwin Porter#883521447"),
+                new Tenant("6#Irene Thompson#718532364"),
+                new Tenant("7#Oriel Hall#903472841"),
+                new Tenant("8#William Wood#814385122"),
+                new Tenant("9#Laurence Mccoy#365423414")
             });
         }
     }

@@ -31,9 +31,9 @@ namespace PKURBI_HFT_2023241.Test
                     RealEstateValue = 265000,
                     BasicArea = 150,
                     SalesId = 2,
-                    Salesperson = (new Salesperson() {SalesId=2, Name="David Holmes", Age= 50,PropId=1}),
+                    Salesperson = (new Salesperson() {SalesId=2, Name="David Holmes", Age= 50}),
                     TenantId = 1,
-                    Tenant = (new Tenant() { TenantId = 1, Name="Olivia Briggs" , Phone=708842211 , PropId=1})
+                    Tenant = (new Tenant() { TenantId = 1, Name="Olivia Briggs" , Phone=708842211})
                 },
                 new RealEstate()
                 {
@@ -42,9 +42,9 @@ namespace PKURBI_HFT_2023241.Test
                     RealEstateValue= 1200000,
                     BasicArea = 200,
                     SalesId = 5,
-                    Salesperson = new Salesperson() {SalesId=5, Name="Kovács István", Age=20, PropId=2 },
+                    Salesperson = new Salesperson() {SalesId=5, Name="Kovács István", Age=20 },
                     TenantId=3,
-                    Tenant = new Tenant() { TenantId= 3, Name="Les Kain", Phone=708547511 ,PropId= 2}
+                    Tenant = new Tenant() { TenantId= 3, Name="Les Kain", Phone=708547511}
                 },
                 new RealEstate()
                 {
@@ -53,26 +53,25 @@ namespace PKURBI_HFT_2023241.Test
                     RealEstateValue= 200000,
                     BasicArea = 80,
                     SalesId = 3,
-                    Salesperson = new Salesperson() {SalesId=3, Name="Peter Parker", Age=34 , PropId=3 },
+                    Salesperson = new Salesperson() {SalesId=3, Name="Peter Parker", Age=34 },
                     TenantId=6,
-                    Tenant = new Tenant() { TenantId= 6, Name="Irene Thompson", Phone=718532364 ,PropId= 3}
+                    Tenant = new Tenant() { TenantId= 6, Name="Irene Thompson", Phone=718532364}
                 },
             }.AsQueryable());
-            
             logic = new RealEstateLogic(mockRealEstateRepo.Object);
         }
 
         [Test]
         public void RealEstateCreateSuccessTest()
         {
-            var newEstate = new RealEstate("4#Berlin#800000#100#1#3");
+            var newEstate = new RealEstate() { BasicArea = 30 };
             logic.Create(newEstate);
             mockRealEstateRepo.Verify(r => r.Create(newEstate), Times.Once);
         }
         [Test]
         public void RealEstateCreateFailTest()
         {
-            var newEstate = new RealEstate("4#Berlin#800000#10#1#3");
+            var newEstate = new RealEstate() { BasicArea = 10 };
             try
             {
                 logic.Create(newEstate);
@@ -82,14 +81,12 @@ namespace PKURBI_HFT_2023241.Test
             }
             mockRealEstateRepo.Verify(t => t.Create(newEstate), Times.Never);
         }
-
         [Test]
         public void AvgPriceBySalesPersonIDTest()
         {
             double? actual = logic.AvgPriceBySalespersonID(3);
             Assert.That(actual, Is.EqualTo(200000));
         }
-
         [Test]
         public void BasicInformationTest()
         {

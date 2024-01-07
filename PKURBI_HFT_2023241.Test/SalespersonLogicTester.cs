@@ -23,17 +23,136 @@ namespace PKURBI_HFT_2023241.Test
             mockSalespersonRepo = new Mock<IRepository<Salesperson>>();
             mockSalespersonRepo.Setup(t => t.ReadAll()).Returns(new List<Salesperson>()
             {
-                new Salesperson("1#John Miller#30#3"),
-                new Salesperson("2#David Holmes#50#6"),
-                new Salesperson("3#Peter Parker#34#2"),
-                new Salesperson("4#Lázár Vilmos#42#1"),
-                new Salesperson("5#Kovács István#20#4"),
-                new Salesperson("6#Mike Cenat#24#7"),
-                new Salesperson("7#John Davis#23#8"),
-                new Salesperson("8#David D.#43#9"),
-                new Salesperson("9#Joe Trump#44#10"),
+                new Salesperson()
+                {
+                    SalesId = 1,
+                    Name = "Olivia Briggs",
+                    Age = 30,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate() 
+                        {                     
+                        RealEstateId = 1,
+                        RealEstateCity = "Budapest",
+                        },
+                        new RealEstate()
+                        {
+                        RealEstateId = 2,
+                        RealEstateCity = "Budapest",
+                        },
+                    } //#3
+                },
+                new Salesperson()
+                {
+                    SalesId = 2,
+                    Name = "David Holmes",
+                    Age = 50,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                        RealEstateId = 3,
+                        RealEstateCity = "Budapest",
+                        },
+                    } //#4
+                },
+                new Salesperson()
+                {
+                    SalesId= 3,
+                    Name = "Peter Parker",
+                    Age = 34,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                        RealEstateId = 4,
+                        RealEstateCity = "Budapest",
+                        },
+                        new RealEstate()
+                        {
+                        RealEstateId = 5,
+                        RealEstateCity = "Budapest",
+                        },                        
+                        new RealEstate()
+                        {
+                        RealEstateId = 6,
+                        RealEstateCity = "Budapest",
+                        },                        
+                        new RealEstate()
+                        {
+                        RealEstateId = 7,
+                        RealEstateCity = "Budapest",
+                        },
+                    } //#2
+                },
+                new Salesperson("4#Lázár Vilmos#42")
+                {
+                    SalesId = 4,
+                    Name = "Lázár Vilmos",
+                    Age = 42,
+                    Realestates = new List<RealEstate>()
+                    {
+                        new RealEstate()
+                        {
+                        RealEstateId = 8,
+                        RealEstateCity = "Budapest",
+                        },
+                        new RealEstate()
+                        {
+                        RealEstateId = 9,
+                        RealEstateCity = "Budapest",
+                        },
+                        new RealEstate()
+                        {
+                        RealEstateId = 10,
+                        RealEstateCity = "Budapest",
+                        },
+                        new RealEstate()
+                        {
+                        RealEstateId = 11,
+                        RealEstateCity = "Budapest",
+                        },
+                        new RealEstate()
+                        {
+                        RealEstateId = 12,
+                        RealEstateCity = "Budapest",
+                        },
+                    } //#1
+                }
             }.AsQueryable());
             logic = new SalespersonLogic(mockSalespersonRepo.Object);
+        }
+
+        [Test]
+        public void MostRealEstatesTest()
+        {
+            var top3 = new List<MostRealEstate>();
+            top3.Add(new MostRealEstate() { Name = "Lázár Vilmos" });
+            top3.Add(new MostRealEstate() { Name = "Peter Parker" });
+            top3.Add(new MostRealEstate() { Name = "Olivia Briggs" });
+            var actual = logic.MostRealEstates().ToList();
+            Assert.That(actual, Is.EqualTo(top3));
+        }
+
+        [Test]
+        public void SalesPersonCreateSuccessTest()
+        {
+            var newSalesPerson = new Salesperson() { Name="TestSubject1", Age=20 };
+            logic.Create(newSalesPerson);
+            mockSalespersonRepo.Verify(t => t.Create(newSalesPerson), Times.Once);
+        }
+        [Test]
+        public void SalesPersonCreateFailTest()
+        {
+            var newSalesPerson = new Salesperson() { Name = "TestSubject2", Age = 15 };
+            try
+            {
+                logic.Create(newSalesPerson);
+            }
+            catch (Exception)
+            {
+            }
+            mockSalespersonRepo.Verify(t => t.Create(newSalesPerson), Times.Never);
         }
     }
 }

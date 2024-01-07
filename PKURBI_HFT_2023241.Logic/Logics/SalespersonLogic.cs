@@ -21,6 +21,11 @@ namespace PKURBI_HFT_2023241.Logic
 
         public void Create(Salesperson entity)
         {
+            if (entity.Age < 16)
+            {
+                throw new ArgumentException($"The Salesperson with the following ID couldn't be created" +
+                    $"because he/she is too young: {entity.SalesId}");
+            }
             this.repo.Create(entity);
         }
 
@@ -55,11 +60,12 @@ namespace PKURBI_HFT_2023241.Logic
         public IEnumerable<MostRealEstate> MostRealEstates()
         {
             var result = from x in this.repo.ReadAll()
-                         group x by x.Name into g
-                         orderby g descending
+                         //group x by x.Name into g
+                         //orderby g.Select(t => t.Realestates.ToList().Count()) descending
+                         orderby x.Realestates.Count() descending
                          select new MostRealEstate()
                          {
-                             Name = g.Key,
+                             Name = x.Name,
                          };
             var finalized = result.Take(3);
             return finalized;
@@ -69,5 +75,23 @@ namespace PKURBI_HFT_2023241.Logic
     public class MostRealEstate
     {
         public string Name { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            MostRealEstate b = obj as MostRealEstate;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name);
+        }
     }
 }
