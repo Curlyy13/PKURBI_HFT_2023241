@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PKURBI_HFT_2023241.Models
@@ -24,7 +25,7 @@ namespace PKURBI_HFT_2023241.Models
         public int Phone {  get; set; }
 
         [NotMapped]
-        public ICollection<RealEstate> Realestates { get; set; }
+        public virtual ICollection<RealEstate> Realestates { get; set; }
 
         public Tenant()
         {

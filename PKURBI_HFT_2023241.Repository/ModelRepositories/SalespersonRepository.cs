@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace PKURBI_HFT_2023241.Repository
 {
-    internal class SalespersonRepository : Repository<Salesperson>, IRepository<Salesperson>
+    public class SalespersonRepository : Repository<Salesperson>, IRepository<Salesperson>
     {
         public SalespersonRepository(AgencyDbContext ctx) : base(ctx) {}
 
         public override Salesperson Read(int id)
         {
-            return this.ctx.salespeople.First(t => t.SalesId == id);
+            return this.ctx.salespeople.FirstOrDefault(t => t.SalesId == id);
         }
 
         public override void Update(Salesperson entity)

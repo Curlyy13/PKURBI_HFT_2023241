@@ -21,11 +21,9 @@ namespace PKURBI_HFT_2023241.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string conn =
-                    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Agency.mdf;Integrated Security=True;MultipleActiveResultSets=true";
                 optionsBuilder
-                    .UseLazyLoadingProxies()
-                    .UseSqlServer(conn);
+                    .UseInMemoryDatabase("AgencyDB")
+                    .UseLazyLoadingProxies();
             }
         }
 
@@ -51,14 +49,14 @@ namespace PKURBI_HFT_2023241.Repository
             modelBuilder.Entity<RealEstate>().HasData(new RealEstate[]
                 {
                 new RealEstate("1#Budapest#265000#150#2#1"),
-                new RealEstate("2#Washington#1200000#200#5#3"),
-                new RealEstate("3#Roma#200000#80#3#6"),
-                new RealEstate("4#Budapest#100000#60#7#5"),
-                new RealEstate("5#Berlin#800000#140#6#2"),
-                new RealEstate("6#London#900000#120#8#9"),
-                new RealEstate("7#London#900000#120#5#4"),
-                new RealEstate("8#London#900000#120#3#7"),
-                new RealEstate("9#London#900000#120#2#8")
+                new RealEstate("2#Washington#1200000#200#4#3"),
+                new RealEstate("3#Roma#200000#80#3#1"),
+                new RealEstate("4#Budapest#100000#60#2#4"),
+                new RealEstate("5#Berlin#800000#140#4#2"),
+                new RealEstate("6#London#900000#120#4#1"),
+                new RealEstate("7#London#900000#120#3#2"),
+                new RealEstate("8#London#900000#120#3#1"),
+                new RealEstate("9#London#900000#120#2#4")
                 });
 
             //Formátum : "SalesId#Név#Kor"
@@ -68,11 +66,6 @@ namespace PKURBI_HFT_2023241.Repository
                 new Salesperson("2#David Holmes#50"),
                 new Salesperson("3#Peter Parker#34"),
                 new Salesperson("4#Lázár Vilmos#42"),
-                new Salesperson("5#Kovács István#20"),
-                new Salesperson("6#Mike Cenat#24"),
-                new Salesperson("7#John Davis#23"),
-                new Salesperson("8#David D.#43"),
-                new Salesperson("9#Joe Trump#44"),
             });
 
             //Formátum : "TenantID#Name#Phone"
@@ -82,11 +75,6 @@ namespace PKURBI_HFT_2023241.Repository
                 new Tenant("2#Bennett Parks#702185525"),
                 new Tenant("3#Les Kain#708547511"),
                 new Tenant("4#Brigham Glisson#708748291"),
-                new Tenant("5#Edwin Porter#883521447"),
-                new Tenant("6#Irene Thompson#718532364"),
-                new Tenant("7#Oriel Hall#903472841"),
-                new Tenant("8#William Wood#814385122"),
-                new Tenant("9#Laurence Mccoy#365423414")
             });
         }
     }

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace PKURBI_HFT_2023241.Repository
 {
-    internal class TenantRepository : Repository<Tenant>, IRepository<Tenant>
+    public class TenantRepository : Repository<Tenant>, IRepository<Tenant>
     {
         public TenantRepository(AgencyDbContext ctx) : base(ctx) {}
 
         public override Tenant Read(int id)
         {
-            return this.ctx.tenants.First(t => t.TenantId == id);
+            return this.ctx.tenants.FirstOrDefault(t => t.TenantId == id);
         }
 
         public override void Update(Tenant entity)

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace PKURBI_HFT_2023241.Repository
 {
-    internal class RealEstateRepository : Repository<RealEstate>, IRepository<RealEstate>
+    public class RealEstateRepository : Repository<RealEstate>, IRepository<RealEstate>
     {
         public RealEstateRepository(AgencyDbContext ctx) : base(ctx) {}
         public override RealEstate Read(int id)
         {
-            return this.ctx.realEstates.First(t => t.RealEstateId == id);
+            return this.ctx.realEstates.FirstOrDefault(t => t.RealEstateId == id);
         }
 
         public override void Update(RealEstate entity)
