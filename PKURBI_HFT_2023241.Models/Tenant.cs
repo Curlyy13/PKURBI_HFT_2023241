@@ -20,11 +20,11 @@ namespace PKURBI_HFT_2023241.Models
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(11)]
 
         public int Phone {  get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<RealEstate> Realestates { get; set; }
 
         public Tenant()

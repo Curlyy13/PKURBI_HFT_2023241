@@ -20,7 +20,10 @@ namespace PKURBI_HFT_2023241.Repository
             var old = Read(entity.RealEstateId);
             foreach (var prop in old.GetType().GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(entity));
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(entity));
+                }
             }
             ctx.SaveChanges();
         }

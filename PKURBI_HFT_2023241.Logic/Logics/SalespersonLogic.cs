@@ -23,14 +23,18 @@ namespace PKURBI_HFT_2023241.Logic
         {
             if (entity.Age < 16)
             {
-                throw new ArgumentException($"The Salesperson with the following ID couldn't be created" +
-                    $"because he/she is too young: {entity.SalesId}");
+                throw new ArgumentException("The Salesperson couldn't be created because he/she is too young!");
             }
             this.repo.Create(entity);
         }
 
         public void Delete(int id)
         {
+            var salesperson = repo.Read(id);
+            if (salesperson == null)
+            {
+                throw new ArgumentException($"The RealEstate with the following ID doesn't exist: {id}");
+            }
             this.repo.Delete(id);
         }
 
@@ -51,6 +55,10 @@ namespace PKURBI_HFT_2023241.Logic
 
         public void Update(Salesperson entity)
         {
+            if (entity.Age < 16)
+            {
+                throw new ArgumentException("The Salesperson couldn't be updated because he/she is too young!");
+            }
             this.repo.Update(entity);
         }
 

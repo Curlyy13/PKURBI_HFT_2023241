@@ -22,14 +22,18 @@ namespace PKURBI_HFT_2023241.Logic
         {
             if (entity.Phone.ToString().Length != 9)
             {
-                throw new ArgumentException($"The Tenant with the following ID coulnd't be created because the phone" +
-                    $"length must be 9 characters: {entity.TenantId}");
+                throw new ArgumentException("The Tenant coulnd't be created because the phone length must be 9 characters!");
             }
             repo.Create(entity);
         }
 
         public void Delete(int id)
         {
+            var tenant = repo.Read(id);
+            if (tenant == null)
+            {
+                throw new ArgumentException($"The RealEstate with the following ID doesn't exist: {id}");
+            }
             repo.Delete(id);
         }
 
@@ -50,6 +54,10 @@ namespace PKURBI_HFT_2023241.Logic
 
         public void Update(Tenant entity)
         {
+            if (entity.Phone.ToString().Length != 9)
+            {
+                throw new ArgumentException("The Tenant coulnd't be updated because the phone length must be 9 characters!");
+            }
             repo.Update(entity);
         }
 

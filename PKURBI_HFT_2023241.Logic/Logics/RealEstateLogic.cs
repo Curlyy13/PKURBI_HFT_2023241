@@ -25,25 +25,28 @@ namespace PKURBI_HFT_2023241.Logic
         {
             if (entity.BasicArea <= 20)
             {
-                throw new ArgumentException("The RealEstate with the following ID couldn't be created because" +
-                    $"the Area is too small: {entity.RealEstateId}");
+                throw new ArgumentException("The RealEstate couldn't be created because the Area is too small!");
             }
             repo.Create(entity);
         }
 
         public void Delete(int id)
         {
+            var estate = repo.Read(id);
+            if (estate == null)
+            {
+                throw new ArgumentException($"The RealEstate with the following ID doesn't exist: {id}");
+            }
             repo.Delete(id);
         }
 
         public RealEstate Read(int id)
         {
             var estate = repo.Read(id);
-            if (repo.Read(id).RealEstateId.Equals(null))
+            if (estate == null)
             {
                 throw new ArgumentException($"The RealEstate with the following ID doesn't exist: {id}");
             }
-            ;
             return repo.Read(id);
         }
 
@@ -54,6 +57,10 @@ namespace PKURBI_HFT_2023241.Logic
 
         public void Update(RealEstate entity)
         {
+            if (entity.BasicArea <= 20)
+            {
+                throw new ArgumentException("The RealEstate couldn't be updated because the Area is too small!");
+            }
             repo.Update(entity);
         }
 
