@@ -8,7 +8,7 @@ namespace PKURBI_HFT_2023241.Logic.Interfaces
     {
         IEnumerable<AvgPrices> AvgPriceByCity();
         double? AvgPriceBySalespersonID(int id);
-        IEnumerable<BasicInfo> BasicInformation(int id);
+        BasicInfo BasicInformation(int id);
         void Create(RealEstate entity);
         void Delete(int id);
         RealEstate Read(int id);

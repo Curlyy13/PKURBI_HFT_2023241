@@ -129,12 +129,12 @@ namespace PKURBI_HFT_2023241.Test
         {
             var expected = new List<Tenants>() 
             {
+                new Tenants() {Name="Bennett Parks", EstateCount=3},
+                new Tenants() {Name="Olivia Briggs", EstateCount=2},
                 new Tenants() {Name="Les Kain", EstateCount=1},
                 new Tenants() {Name="Brigham Glisson", EstateCount=1},
-                new Tenants() {Name="Olivia Briggs", EstateCount=2},
-                new Tenants() {Name="Bennett Parks", EstateCount=3},
             };
-            var actual = logic.TenantsByCity();
+            var actual = logic.TenantsByCity().ToList();
             Assert.That(expected, Is.EqualTo(actual));
         }
     }

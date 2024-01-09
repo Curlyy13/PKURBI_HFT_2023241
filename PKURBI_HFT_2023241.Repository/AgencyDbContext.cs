@@ -54,8 +54,8 @@ namespace PKURBI_HFT_2023241.Repository
                 new RealEstate("4#Budapest#100000#60#2#4"),
                 new RealEstate("5#Berlin#800000#140#4#2"),
                 new RealEstate("6#London#900000#120#4#1"),
-                new RealEstate("7#London#900000#120#3#2"),
-                new RealEstate("8#London#900000#120#3#1"),
+                new RealEstate("7#London#800000#130#1#2"),
+                new RealEstate("8#London#750000#150#3#1"),
                 new RealEstate("9#London#900000#120#2#4")
                 });
 
@@ -71,10 +71,10 @@ namespace PKURBI_HFT_2023241.Repository
             //Formátum : "TenantID#Name#Phone"
             modelBuilder.Entity<Tenant>().HasData(new Tenant[]
             {
-                new Tenant("1#Olivia Briggs#708842211"),
-                new Tenant("2#Bennett Parks#702185525"),
-                new Tenant("3#Les Kain#708547511"),
-                new Tenant("4#Brigham Glisson#708748291"),
+                new Tenant("1#Olivia Briggs#108842211"),
+                new Tenant("2#Bennett Parks#102185525"),
+                new Tenant("3#Les Kain#108547511"),
+                new Tenant("4#Brigham Glisson#108748291"),
             });
         }
     }

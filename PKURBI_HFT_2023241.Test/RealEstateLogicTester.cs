@@ -100,7 +100,7 @@ namespace PKURBI_HFT_2023241.Test
                 TenantContact = 718532364,
             };
             var actual = logic.BasicInformation(3);
-            Assert.That(actual.ToArray()[0], Is.EqualTo(expected));
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]

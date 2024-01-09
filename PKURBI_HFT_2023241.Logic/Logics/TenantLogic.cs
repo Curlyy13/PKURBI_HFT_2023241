@@ -1,4 +1,5 @@
-﻿using PKURBI_HFT_2023241.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PKURBI_HFT_2023241.Models;
 using PKURBI_HFT_2023241.Repository;
 using System;
 using System.Collections.Generic;
@@ -66,38 +67,14 @@ namespace PKURBI_HFT_2023241.Logic
 
         public IEnumerable<Tenants> TenantsByCity()
         {
-            return from x in this.repo.ReadAll()
-                   group x by x.Name into g
-                   orderby g.Select(t => t.Realestates.Count()).Sum() ascending
+            var tenants = from x in this.repo.ReadAll()
+                   let estateCount = x.Realestates.Count()
                    select new Tenants()
                    {
-                       Name = g.Key,
-                       EstateCount = g.Select(t => t.Realestates.Count()).Sum()
+                       Name = x.Name,
+                       EstateCount = estateCount
                    };
-        }
-    }
-
-    public class Tenants
-    {
-        public int EstateCount { get; set; }
-        public string Name { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            Tenants b = obj as Tenants;
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return this.Name == b.Name && this.EstateCount == b.EstateCount;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Name,this.EstateCount);
+            return tenants.OrderByDescending(t=> t.EstateCount);
         }
     }
 }

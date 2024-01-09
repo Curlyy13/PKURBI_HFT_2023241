@@ -8,7 +8,7 @@ namespace PKURBI_HFT_2023241.Logic
     {
         void Create(Salesperson entity);
         void Delete(int id);
-        IEnumerable<MostRealEstate> MostRealEstates();
+        IEnumerable<string> MostRealEstates();
         Salesperson Read(int id);
         IQueryable<Salesperson> ReadAll();
         void Update(Salesperson entity);
