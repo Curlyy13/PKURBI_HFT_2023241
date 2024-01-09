@@ -41,4 +41,28 @@ namespace PKURBI_HFT_2023241.Models
             Realestates = new HashSet<RealEstate>();
         }
     }
+    //Non-Crud metódus miatt ki kell emelni a logic osztályból hogy használni tudja a ConsoleMenu
+    public class Tenants
+    {
+        public int EstateCount { get; set; }
+        public string Name { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Tenants b = obj as Tenants;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.EstateCount == b.EstateCount;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.EstateCount);
+        }
+    }
 }

@@ -69,6 +69,11 @@ namespace PKURBI_HFT_2023241.Logic
         //Returns the avarage price of the estates according to the given Salesperson ID
         public double? AvgPriceBySalespersonID(int id)
         {
+            var ExceptionTest = this.repo.ReadAll().Where(t=>t.SalesId == id).ToList();
+            if (ExceptionTest.Count() == 0)
+            {
+                throw new ArgumentException("Nem található az megadott ID-val RealEstate, így nem végezhető el a feladat.");
+            }
             return this.repo
                 .ReadAll()
                 .Where(t => t.SalesId == id)
@@ -78,9 +83,9 @@ namespace PKURBI_HFT_2023241.Logic
         //NON-CRUD 2
         //Return the basic informations about the realestate with the salesperson name and the contact of the renter
 
-        public IEnumerable<BasicInfo> BasicInformation(int id)
+        public BasicInfo BasicInformation(int id)
         {
-            return from x in this.repo.ReadAll()
+            var basic = from x in this.repo.ReadAll()
                    where x.RealEstateId == id
                    select new BasicInfo()
                    {
@@ -91,6 +96,15 @@ namespace PKURBI_HFT_2023241.Logic
                        Tenant = x.Tenant.Name,
                        TenantContact = x.Tenant.Phone
                    };
+            var test = basic.ToArray();
+            if (test.Length != 0)
+            { 
+                if (test[0].Salesperson == null || test[0].Value == null || test[0].TenantContact == null || test[0].Tenant == null || test[0].Area == null || test[0].Location == null) { throw new ArgumentException("The NonCrud method couldn't be performed because the RealEstate has missing parts which are required to do this task."); }
+            }
+            else { throw new ArgumentException("The NonCrud method couldn't be performed because the RealEstate with the following ID doesn't exist"); }
+            basic.ToList();
+            BasicInfo info = basic.First();
+            return info;
         }
 
         //NON-CRUD 3
@@ -107,44 +121,4 @@ namespace PKURBI_HFT_2023241.Logic
         }
     }
 
-    public class AvgPrices
-    {
-        public string City { get; set; }
-        public double AvgPrice { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            AvgPrices b = obj as AvgPrices;
-            if (b == null) { return false; }
-            else {return this.City == b.City && this.AvgPrice == b.AvgPrice;}
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.City, this.AvgPrice);
-        }
-    }
-    public class BasicInfo
-    {
-        public string Location { get; set; }
-        public double Value { get; set; }
-        public double Area { get; set; }
-        public string Salesperson { get; set; }
-        public string Tenant { get; set; }
-        public int TenantContact { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            BasicInfo b = obj as BasicInfo;
-            if (b == null) { return false;}
-            else {
-                return this.Location == b.Location && this.Value == b.Value && this.Area == b.Area && this.Salesperson == b.Salesperson && this.Tenant == b.Tenant && this.TenantContact == b.TenantContact;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Location, this.Value, this.Area, this.Salesperson, this.Tenant, this.TenantContact);
-        }
-    }
 }

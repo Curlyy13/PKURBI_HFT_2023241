@@ -126,10 +126,10 @@ namespace PKURBI_HFT_2023241.Test
         [Test]
         public void MostRealEstatesTest()
         {
-            var top3 = new List<MostRealEstate>();
-            top3.Add(new MostRealEstate() { Name = "Lázár Vilmos" });
-            top3.Add(new MostRealEstate() { Name = "Peter Parker" });
-            top3.Add(new MostRealEstate() { Name = "Olivia Briggs" });
+            var top3 = new List<string>();
+            top3.Add("Lázár Vilmos");
+            top3.Add("Peter Parker");
+            top3.Add("Olivia Briggs");
             var actual = logic.MostRealEstates().ToList();
             Assert.That(actual, Is.EqualTo(top3));
         }
