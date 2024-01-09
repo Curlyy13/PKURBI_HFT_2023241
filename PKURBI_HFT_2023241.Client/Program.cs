@@ -164,6 +164,16 @@ namespace PKURBI_HFT_2023241.Client
             }
             Console.ReadLine();
         }
+        static void BasicInformation()
+        {
+            Console.WriteLine("Enter the ID of the RealEstate: ");
+            int id = int.Parse(Console.ReadLine());
+            var basicinfo = rest.Get<BasicInfo>(id, "NCRealEstate/BasicInformation");
+            Console.WriteLine("Location: " + basicinfo.Location + "\nValue: " + basicinfo.Value + "\nBasicArea: "
+                + basicinfo.Area + "\nSalesperson: " + basicinfo.Salesperson + "\nTenant: " + basicinfo.Tenant
+                + "\nContact: " + basicinfo.TenantContact);
+            Console.ReadLine();
+        }
 
 
         static void Main(string[] args)
@@ -195,6 +205,7 @@ namespace PKURBI_HFT_2023241.Client
                 .Add("AvgPriceBySalesperson", () => AvgPriceBySalespersonID())
                 .Add("MostRealEstates", () => MostRealEstates())
                 .Add("TenantsByCity", () => TenantsByCity())
+                .Add("BasicInformation", () => BasicInformation())
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
