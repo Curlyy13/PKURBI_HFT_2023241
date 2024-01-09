@@ -142,49 +142,8 @@ namespace PKURBI_HFT_2023241.Client
             Console.WriteLine("The avarage price of the given Salesman is : " + result);
             Console.ReadLine();
         }
-        static void MostRealEstates()
-        {
-            Console.WriteLine("The most top 3 salesman who has the most RealEstates: ");
-            var top3 = rest.Get<string>("NCSalesperson/MostRealEstates");
-            int index = 0;
-            foreach (var item in top3)
-            {
-                index++;
-                Console.WriteLine(index + ".: "+item);
-            }
-            Console.ReadLine();
-        }
-        static void TenantsByCity()
-        {
-            var TenantList = rest.Get<Tenants>("NCTenant/TenantsByCity");
-            Console.WriteLine("{0,-15} {1,-2}", "Name", "Number of Estates");
-            foreach (var item in TenantList)
-            {
-                Console.WriteLine("{0,-15} {1,8}", item.Name, item.EstateCount);
-            }
-            Console.ReadLine();
-        }
-        static void BasicInformation()
-        {
-            Console.WriteLine("Enter the ID of the RealEstate: ");
-            int id = int.Parse(Console.ReadLine());
-            var basicinfo = rest.Get<BasicInfo>(id, "NCRealEstate/BasicInformation");
-            Console.WriteLine("Location: "+basicinfo.Location+"\nValue: "+basicinfo.Value+"\nBasicArea: "
-                +basicinfo.Area+"\nSalesperson: "+basicinfo.Salesperson+"\nTenant: "+basicinfo.Tenant
-                +"\nContact: "+basicinfo.TenantContact);
-            Console.ReadLine();
-        }
-        static void AvgPriceByCity()
-        {
-            var query = rest.Get<AvgPrices>("NCRealEstate/AvgPriceByCity");
-            Console.WriteLine("The avarage values of the RealEstates by cities: ");
-            Console.WriteLine("{0,-20} {1,-10}", "City", "AvgValue");
-            foreach (var item in query)
-            {
-                Console.WriteLine("{0,-20} {1,-10}", item.City, item.AvgPrice);
-            }
-            Console.ReadLine();
-        }
+
+
         static void Main(string[] args)
         {
             rest = new RestService("http://localhost:35487/", "RealEstate");
@@ -212,10 +171,6 @@ namespace PKURBI_HFT_2023241.Client
 
             var NonCrudSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("AvgPriceBySalesperson", () => AvgPriceBySalespersonID())
-                .Add("MostRealEstates", () => MostRealEstates())
-                .Add("TenantsByCity", () => TenantsByCity())
-                .Add("BasicInformation", ()=> BasicInformation())
-                .Add("AvgPriceByCity", ()=> AvgPriceByCity())
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
