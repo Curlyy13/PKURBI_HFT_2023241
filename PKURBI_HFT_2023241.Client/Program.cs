@@ -174,6 +174,17 @@ namespace PKURBI_HFT_2023241.Client
                 + "\nContact: " + basicinfo.TenantContact);
             Console.ReadLine();
         }
+        static void AvgPriceByCity()
+        {
+            var query = rest.Get<AvgPrices>("NCRealEstate/AvgPriceByCity");
+            Console.WriteLine("The avarage values of the RealEstates by cities: ");
+            Console.WriteLine("{0,-20} {1,-10}", "City", "AvgValue");
+            foreach (var item in query)
+            {
+                Console.WriteLine("{0,-20} {1,-10}", item.City, item.AvgPrice);
+            }
+            Console.ReadLine();
+        }
 
 
         static void Main(string[] args)
@@ -206,6 +217,7 @@ namespace PKURBI_HFT_2023241.Client
                 .Add("MostRealEstates", () => MostRealEstates())
                 .Add("TenantsByCity", () => TenantsByCity())
                 .Add("BasicInformation", () => BasicInformation())
+                .Add("AvgPriceByCity", () => AvgPriceByCity())
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
