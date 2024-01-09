@@ -154,6 +154,16 @@ namespace PKURBI_HFT_2023241.Client
             }
             Console.ReadLine();
         }
+        static void TenantsByCity()
+        {
+            var TenantList = rest.Get<Tenants>("NCTenant/TenantsByCity");
+            Console.WriteLine("{0,-15} {1,-2}", "Name", "Number of Estates");
+            foreach (var item in TenantList)
+            {
+                Console.WriteLine("{0,-15} {1,8}", item.Name, item.EstateCount);
+            }
+            Console.ReadLine();
+        }
 
 
         static void Main(string[] args)
@@ -184,6 +194,7 @@ namespace PKURBI_HFT_2023241.Client
             var NonCrudSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("AvgPriceBySalesperson", () => AvgPriceBySalespersonID())
                 .Add("MostRealEstates", () => MostRealEstates())
+                .Add("TenantsByCity", () => TenantsByCity())
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
