@@ -142,6 +142,18 @@ namespace PKURBI_HFT_2023241.Client
             Console.WriteLine("The avarage price of the given Salesman is : " + result);
             Console.ReadLine();
         }
+        static void MostRealEstates()
+        {
+            Console.WriteLine("The most top 3 salesman who has the most RealEstates: ");
+            var top3 = rest.Get<string>("NCSalesperson/MostRealEstates");
+            int index = 0;
+            foreach (var item in top3)
+            {
+                index++;
+                Console.WriteLine(index + ".: " + item);
+            }
+            Console.ReadLine();
+        }
 
 
         static void Main(string[] args)
@@ -171,6 +183,7 @@ namespace PKURBI_HFT_2023241.Client
 
             var NonCrudSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("AvgPriceBySalesperson", () => AvgPriceBySalespersonID())
+                .Add("MostRealEstates", () => MostRealEstates())
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
