@@ -137,5 +137,18 @@ namespace PKURBI_HFT_2023241.Test
             var actual = logic.TenantsByCity().ToList();
             Assert.That(expected, Is.EqualTo(actual));
         }
+        [Test]
+        public void TenantUpdate()
+        {
+            var updatedTenant = new Tenant() { Phone = 12345678, TenantId = 1, Name = "badtest" };
+            try
+            {
+                logic.Update(updatedTenant);
+            }
+            catch (Exception)
+            {
+            }
+            mockTenantRepo.Verify(r=> r.Update(updatedTenant), Times.Never);
+        }
     }
 }

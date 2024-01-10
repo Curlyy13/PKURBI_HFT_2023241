@@ -115,5 +115,19 @@ namespace PKURBI_HFT_2023241.Test
             var actual = logic.AvgPriceByCity().ToList();
             Assert.That(actual, Is.EqualTo(expected));
         }
+        [Test]
+        public void RealEstateUpdateTest()
+        {
+            //Mivel a basicarea kisebb mint 20 exception-t kell hogy dobjon az update
+            var updated = new RealEstate() { RealEstateId = 1, RealEstateCity="badtest", RealEstateValue=100, BasicArea=1 };
+            try
+            {
+                logic.Update(updated);
+            }
+            catch (Exception)
+            {
+            }
+            mockRealEstateRepo.Verify(t => t.Update(updated), Times.Never);
+        }
     }         
 }
