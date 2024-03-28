@@ -150,7 +150,7 @@ namespace PKURBI_HFT_2023241.Client
             foreach (var item in top3)
             {
                 index++;
-                Console.WriteLine(index + ".: " + item);
+                Console.WriteLine(index + ".: "+item);
             }
             Console.ReadLine();
         }
@@ -169,9 +169,9 @@ namespace PKURBI_HFT_2023241.Client
             Console.WriteLine("Enter the ID of the RealEstate: ");
             int id = int.Parse(Console.ReadLine());
             var basicinfo = rest.Get<BasicInfo>(id, "NCRealEstate/BasicInformation");
-            Console.WriteLine("Location: " + basicinfo.Location + "\nValue: " + basicinfo.Value + "\nBasicArea: "
-                + basicinfo.Area + "\nSalesperson: " + basicinfo.Salesperson + "\nTenant: " + basicinfo.Tenant
-                + "\nContact: " + basicinfo.TenantContact);
+            Console.WriteLine("Location: "+basicinfo.Location+"\nValue: "+basicinfo.Value+"\nBasicArea: "
+                +basicinfo.Area+"\nSalesperson: "+basicinfo.Salesperson+"\nTenant: "+basicinfo.Tenant
+                +"\nContact: "+basicinfo.TenantContact);
             Console.ReadLine();
         }
         static void AvgPriceByCity()
@@ -185,49 +185,8 @@ namespace PKURBI_HFT_2023241.Client
             }
             Console.ReadLine();
         }
-
-
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:35487/", "RealEstate");
-
-            var RealEstateSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => List("RealEstate"))
-                .Add("Create", () => Create("RealEstate"))
-                .Add("Delete", () => Delete("RealEstate"))
-                .Add("Update", () => Update("RealEstate"))
-                .Add("Exit", ConsoleMenu.Close);
-
-            var SalespersonSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => List("Salesperson"))
-                .Add("Create", () => Create("Salesperson"))
-                .Add("Delete", () => Delete("Salesperson"))
-                .Add("Update", () => Update("Salesperson"))
-                .Add("Exit", ConsoleMenu.Close);
-
-            var TenantSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => List("Tenant"))
-                .Add("Create", () => Create("Tenant"))
-                .Add("Delete", () => Delete("Tenant"))
-                .Add("Update", () => Update("Tenant"))
-                .Add("Exit", ConsoleMenu.Close);
-
-            var NonCrudSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("AvgPriceBySalesperson", () => AvgPriceBySalespersonID())
-                .Add("MostRealEstates", () => MostRealEstates())
-                .Add("TenantsByCity", () => TenantsByCity())
-                .Add("BasicInformation", () => BasicInformation())
-                .Add("AvgPriceByCity", () => AvgPriceByCity())
-                .Add("Exit", ConsoleMenu.Close);
-
-            var menu = new ConsoleMenu(args, level: 0)
-                .Add("RealEstates", () => RealEstateSubMenu.Show())
-                .Add("Salespeople", () => SalespersonSubMenu.Show())
-                .Add("Tenants", () => TenantSubMenu.Show())
-                .Add("NonCruds", () => NonCrudSubMenu.Show())
-                .Add("Exit", ConsoleMenu.Close);
-
-            menu.Show();
         }
     }
 }

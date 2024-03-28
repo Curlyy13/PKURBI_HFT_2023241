@@ -154,5 +154,18 @@ namespace PKURBI_HFT_2023241.Test
             }
             mockSalespersonRepo.Verify(t => t.Create(newSalesPerson), Times.Never);
         }
+        [Test]
+        public void SalespersonUpdate()
+        {
+            var updatedsalesperson = new Salesperson() { Age = 1, Name = "badtest", SalesId = 1 };
+            try
+            {
+                logic.Update(updatedsalesperson);
+            }
+            catch (Exception)
+            {
+            }
+            mockSalespersonRepo.Verify(r => r.Update(updatedsalesperson), Times.Never);
+        }
     }
 }
