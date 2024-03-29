@@ -14,6 +14,13 @@ namespace PKURBI_HFT_2023241.WpfClient
 {
     public class MainWindowViewModel : ObservableRecipient
     {
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { SetProperty(ref errorMessage, value); }
+        }
         public RestCollection<RealEstate> RealEstates { get; set; }
 
         private RealEstate selectedRealEstate;
@@ -21,8 +28,20 @@ namespace PKURBI_HFT_2023241.WpfClient
         public RealEstate SelectedRealEstate
         {
             get { return selectedRealEstate; }
-            set { SetProperty(ref selectedRealEstate, value);
-                (DeleteRealEstateCommand as RelayCommand).NotifyCanExecuteChanged();
+            set
+            {
+                if (value != null)
+                {
+                    selectedRealEstate = new RealEstate()
+                    {
+                        RealEstateCity = value.RealEstateCity,
+                        RealEstateValue = value.RealEstateValue,
+                        BasicArea = value.BasicArea,
+                        RealEstateId = value.RealEstateId,
+                    };
+                    OnPropertyChanged();
+                    (DeleteRealEstateCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
             }
         }
 
@@ -49,7 +68,17 @@ namespace PKURBI_HFT_2023241.WpfClient
                 {
                     RealEstates.Add(new RealEstate() { RealEstateCity = "bp", BasicArea=100, RealEstateValue=1000 });
                 });
-
+                UpdateRealEstateCommand = new RelayCommand(() =>
+                {
+                    try
+                    {
+                        RealEstates.Update(SelectedRealEstate);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        ErrorMessage = ex.Message;
+                    }
+                });
                 DeleteRealEstateCommand = new RelayCommand(() =>
                 {
                     RealEstates.Delete(SelectedRealEstate.RealEstateId);
