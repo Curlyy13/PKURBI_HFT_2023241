@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PKURBI_HFT_2023241.Endpoint.Services;
 using PKURBI_HFT_2023241.Logic;
 using PKURBI_HFT_2023241.Logic.Interfaces;
 using PKURBI_HFT_2023241.Models;
@@ -31,6 +32,8 @@ namespace PKURBI_HFT_2023241.Endpoint
             services.AddTransient<ITenantLogic, TenantLogic>();
             services.AddTransient<IRealEstateLogic, RealEstateLogic>();
             services.AddTransient<ISalespersonLogic, SalespersonLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
 
@@ -66,6 +69,7 @@ namespace PKURBI_HFT_2023241.Endpoint
                 //    await context.Response.WriteAsync("Hello World!");
                 //});
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

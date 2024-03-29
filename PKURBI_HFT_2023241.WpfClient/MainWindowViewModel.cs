@@ -63,7 +63,7 @@ namespace PKURBI_HFT_2023241.WpfClient
         {
             if (!IsInDesignMode)
             {
-                RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate");
+                RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate", "hub");
                 CreateRealEstateCommand = new RelayCommand(() =>
                 {
                     RealEstates.Add(new RealEstate() { RealEstateCity = SelectedRealEstate.RealEstateCity, BasicArea=SelectedRealEstate.BasicArea, RealEstateValue=SelectedRealEstate.RealEstateValue });
