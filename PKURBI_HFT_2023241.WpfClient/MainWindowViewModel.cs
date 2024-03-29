@@ -66,7 +66,7 @@ namespace PKURBI_HFT_2023241.WpfClient
                 RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate");
                 CreateRealEstateCommand = new RelayCommand(() =>
                 {
-                    RealEstates.Add(new RealEstate() { RealEstateCity = "bp", BasicArea=100, RealEstateValue=1000 });
+                    RealEstates.Add(new RealEstate() { RealEstateCity = SelectedRealEstate.RealEstateCity, BasicArea=SelectedRealEstate.BasicArea, RealEstateValue=SelectedRealEstate.RealEstateValue });
                 });
                 UpdateRealEstateCommand = new RelayCommand(() =>
                 {
@@ -87,6 +87,7 @@ namespace PKURBI_HFT_2023241.WpfClient
                 {
                     return SelectedRealEstate != null;
                 });
+                selectedRealEstate = new RealEstate();
             }
         }
 
