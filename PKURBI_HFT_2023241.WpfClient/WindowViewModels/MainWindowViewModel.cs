@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PKURBI_HFT_2023241.WpfClient
+namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
@@ -66,7 +66,7 @@ namespace PKURBI_HFT_2023241.WpfClient
                 RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate", "hub");
                 CreateRealEstateCommand = new RelayCommand(() =>
                 {
-                    RealEstates.Add(new RealEstate() { RealEstateCity = SelectedRealEstate.RealEstateCity, BasicArea=SelectedRealEstate.BasicArea, RealEstateValue=SelectedRealEstate.RealEstateValue });
+                    RealEstates.Add(new RealEstate() { RealEstateCity = SelectedRealEstate.RealEstateCity, BasicArea = SelectedRealEstate.BasicArea, RealEstateValue = SelectedRealEstate.RealEstateValue });
                 });
                 UpdateRealEstateCommand = new RelayCommand(() =>
                 {
