@@ -1,19 +1,66 @@
-﻿using PKURBI_HFT_2023241.Models;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using PKURBI_HFT_2023241.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace PKURBI_HFT_2023241.WpfClient
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : ObservableRecipient
     {
         public RestCollection<RealEstate> RealEstates { get; set; }
 
+        private RealEstate selectedRealEstate;
+
+        public RealEstate SelectedRealEstate
+        {
+            get { return selectedRealEstate; }
+            set { SetProperty(ref selectedRealEstate, value);
+                (DeleteRealEstateCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+
+        public ICommand CreateRealEstateCommand { get; set; }
+        public ICommand DeleteRealEstateCommand { get; set; }
+        public ICommand UpdateRealEstateCommand { get; set; }
+
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
         public MainWindowViewModel()
         {
-           RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate");
+            if (!IsInDesignMode)
+            {
+                RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate");
+                CreateRealEstateCommand = new RelayCommand(() =>
+                {
+                    RealEstates.Add(new RealEstate() { RealEstateCity = "bp", BasicArea=100, RealEstateValue=1000 });
+                });
+
+                DeleteRealEstateCommand = new RelayCommand(() =>
+                {
+                    RealEstates.Delete(SelectedRealEstate.RealEstateId);
+                },
+                () =>
+                {
+                    return SelectedRealEstate != null;
+                });
+            }
         }
+
+
     }
 }

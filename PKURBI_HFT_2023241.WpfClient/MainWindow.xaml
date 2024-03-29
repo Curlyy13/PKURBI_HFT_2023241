@@ -12,10 +12,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding RealEstates}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+        <ListBox Grid.Column="0" ItemsSource="{Binding RealEstates}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedRealEstate}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel Background="Azure">
@@ -25,7 +24,17 @@
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            
         </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="City" HorizontalAlignment="Stretch" Padding="10"/>
+            <TextBox Text="" Padding="10"/>
+            <Label Content="BasicArea" HorizontalAlignment="Stretch" Padding="10"/>
+            <TextBox Text="" Padding="10"/>
+            <Label Content="Value" HorizontalAlignment="Stretch" Padding="10"/>
+            <TextBox Text="" Padding="10"/>
+            <Button Content="Create" Command="{Binding CreateRealEstateCommand}" Padding="10" Margin="0,0,0,10"/>
+            <Button Content="Delete" Command="{Binding DeleteRealEstateCommand}" Padding="10" Margin="0,0,0,10"/>
+            <Button Content="Update" Command="{Binding UpdateRealEstateCommand}" Padding="10" Margin="0,0,0,10"/>
+        </StackPanel>
     </Grid>
 </Window>
