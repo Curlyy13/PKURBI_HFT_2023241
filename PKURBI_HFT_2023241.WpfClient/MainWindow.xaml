@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PKURBI_HFT_2023241.WpfClient"
         mc:Ignorable="d"
-        Title="RealEstate Window" Height="450" Width="800">
+        Title="RealEstate Window" Height="502" Width="800">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <ListBox Grid.Column="0" ItemsSource="{Binding RealEstates}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedRealEstate}">
             <ListBox.ItemTemplate>
@@ -26,15 +27,17 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Label Content="City" HorizontalAlignment="Stretch" Padding="10"/>
+            <Label Content="City" HorizontalAlignment="Stretch" Padding="10" Background="Azure" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <TextBox Text="{Binding SelectedRealEstate.RealEstateCity}" Padding="10"/>
-            <Label Content="BasicArea" HorizontalAlignment="Stretch" Padding="10"/>
+            <Label Content="BasicArea" HorizontalAlignment="Stretch" Padding="10" Background="Azure" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <TextBox Text="{Binding SelectedRealEstate.BasicArea}" Padding="10"/>
-            <Label Content="Value" HorizontalAlignment="Stretch" Padding="10"/>
+            <Label Content="Value" HorizontalAlignment="Stretch" Padding="10" Background="Azure" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <TextBox Text="{Binding SelectedRealEstate.RealEstateValue}" Padding="10"/>
-            <Button Content="Create" Command="{Binding CreateRealEstateCommand}" Padding="10" Margin="0,0,0,10"/>
-            <Button Content="Delete" Command="{Binding DeleteRealEstateCommand}" Padding="10" Margin="0,0,0,10"/>
-            <Button Content="Update" Command="{Binding UpdateRealEstateCommand}" Padding="10" Margin="0,0,0,10"/>
+            <Button Content="Create" Command="{Binding CreateRealEstateCommand}" Padding="10" Margin="10" FontSize="20" VerticalAlignment="Center"/>
+            <Button Content="Delete" Command="{Binding DeleteRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
+            <Button Content="Update" Command="{Binding UpdateRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
         </StackPanel>
     </Grid>
 </Window>
