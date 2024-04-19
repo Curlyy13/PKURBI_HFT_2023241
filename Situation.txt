@@ -1,0 +1,7 @@
+A MainWindow és a RealEstate Window jelenleg teljesen ugyanaz.
+A WindowViewModellek kivannak dolgozva a MainWindow-on kívül
+
+ToDo:
+- MainWindow kialakítása
+- MainWindowViewModel elkészítése
+- NC metódusok API megjelenítése ( A megjelenõ ablak jobb oldalán egy listbox fog megjelenni ahol az eredményt lehet listázni )

@@ -26,7 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{A37CAB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PKURBI_HFT_2023241.Endpoint", "PKURBI_HFT_2023241.Endpoint\PKURBI_HFT_2023241.Endpoint.csproj", "{D428E7C8-F85E-4E78-BF4C-B9E1D154293A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKURBI_HFT_2023241.WpfClient", "PKURBI_HFT_2023241.WpfClient\PKURBI_HFT_2023241.WpfClient.csproj", "{2D7E82DA-AFC8-4C95-AB5C-D9ED7391EB2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PKURBI_HFT_2023241.WpfClient", "PKURBI_HFT_2023241.WpfClient\PKURBI_HFT_2023241.WpfClient.csproj", "{2D7E82DA-AFC8-4C95-AB5C-D9ED7391EB2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Situation", "Situation", "{D3A74B62-F76C-4BA8-AE6C-0218136001E3}"
+	ProjectSection(SolutionItems) = preProject
+		Situation.txt = Situation.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
