@@ -21,8 +21,8 @@
                 <DataTemplate>
                     <WrapPanel Background="Azure">
                         <Label Content="{Binding SalesId}" ContentStringFormat="ID: {0}" HorizontalAlignment="Left"/>
-                        <Label Content="{Binding Name}" ContentStringFormat="City: {0}" HorizontalAlignment="Center" />
-                        <Label Content="{Binding Age}" ContentStringFormat="Value: {0}" HorizontalContentAlignment="Right" HorizontalAlignment="Right"/>
+                        <Label Content="{Binding Name}" ContentStringFormat="Name: {0}" HorizontalAlignment="Center" />
+                        <Label Content="{Binding Age}" ContentStringFormat="Age: {0}" HorizontalContentAlignment="Right" HorizontalAlignment="Right"/>
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

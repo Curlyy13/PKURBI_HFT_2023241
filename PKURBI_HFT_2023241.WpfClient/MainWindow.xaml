@@ -18,7 +18,7 @@
         <Label Content="Üdvözöllek az alkalmazásban! Válaszd ki melyik menübe szeretnél továbblépni!" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Aqua"/>
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
             <Button Width="100" Height="100" Padding="10" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding OpenRealEstateWindowCommand}" Content="RealEstate View"/>
-            <Button Width="100" Height="100" Padding="10" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Width="100" Height="100" Padding="10" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding OpenSalesPersonWindowCommand}" Content="Salesperson View"/>
             <Button Width="100" Height="100" Padding="10" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>

@@ -32,6 +32,7 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
         }
 
         public ICommand OpenRealEstateWindowCommand { get; set; }
+        public ICommand OpenSalesPersonWindowCommand { get; set; }
 
         public MainWindowViewModel()
         {
@@ -41,6 +42,11 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
                 {
                     RealEstateWindow realEstateWindow = new RealEstateWindow();
                     realEstateWindow.ShowDialog();
+                });
+                OpenSalesPersonWindowCommand = new RelayCommand(() =>
+                {
+                    SalesPersonWindow salesPersonWindow = new SalesPersonWindow();
+                    salesPersonWindow.ShowDialog();
                 });
             }
         }
