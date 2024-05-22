@@ -49,7 +49,7 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
         public ICommand CreateRealEstateCommand { get; set; }
         public ICommand DeleteRealEstateCommand { get; set; }
         public ICommand UpdateRealEstateCommand { get; set; }
-
+        public ICommand GetAvgPriceComamnd { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -86,6 +86,10 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
                 () =>
                 {
                     return SelectedRealEstate != null;
+                });
+                GetAvgPriceComamnd = new RelayCommand(() =>
+                {
+                    
                 });
                 selectedRealEstate = new RealEstate();
             }

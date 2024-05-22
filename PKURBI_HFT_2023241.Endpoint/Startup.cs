@@ -60,6 +60,13 @@ namespace PKURBI_HFT_2023241.Endpoint
                 var response = new { Msg = exception.Message };
                 await context.Response.WriteAsJsonAsync(response);
             }));
+
+            app.UseCors( x=> x
+            .AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("http://localhost:36594"));
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

@@ -1,0 +1,34 @@
+﻿table{
+    width : 100%;
+    border-collapse: collapse;
+}
+
+table, th, td{
+    border: 1px solid aquamarine;
+}
+
+th, td{
+    padding: 5px;
+}
+
+th{
+    background-color: aquamarine;
+}
+
+#formdiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+#formdiv label, button, input{
+    margin: 5px;
+}
+
+#formdiv label{
+    font-weight: bolder;
+}
+
+table button{
+    padding: 2px;
+}

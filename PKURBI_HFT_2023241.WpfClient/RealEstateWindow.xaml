@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:PKURBI_HFT_2023241.WpfClient"
         xmlns:viewmodels="clr-namespace:PKURBI_HFT_2023241.WpfClient.WindowViewModels"
         mc:Ignorable="d"
-        Title="RealEstateWindow" Height="450" Width="800">
+        Title="RealEstateWindow" Height="450" Width="800"
+        WindowState="Maximized"
+        WindowStyle="ThreeDBorderWindow">
     <Window.DataContext>
         <viewmodels:RealEstateWindowViewModel/>
     </Window.DataContext>
@@ -37,8 +39,23 @@
             <Button Content="Create" Command="{Binding CreateRealEstateCommand}" Padding="10" Margin="10" FontSize="20" VerticalAlignment="Center"/>
             <Button Content="Delete" Command="{Binding DeleteRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
             <Button Content="Update" Command="{Binding UpdateRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
+            <Button Content="AvgPriceByCity" Padding="10" Margin="10" FontSize="20"/>
         </StackPanel>
         <StackPanel Grid.Column="2">
+            <Label Content="Non-cruds" HorizontalAlignment="Stretch" Padding="7" Background="Azure" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <!--AvgPriceBySalesPerson-->
+                <Label Content="Salesperson ID: " HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5,0,0,0"/>
+                <TextBox Text="{Binding SelectedRealEstate}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Width="40" Margin="5,0,10,0" Padding="5"/>
+                <Button Content="Submit" Command="{Binding }"/>
+            </WrapPanel>
+            <Label ContentStringFormat="AvgPrice: {0}" Content="{Binding }" HorizontalAlignment="Center"/>
+            <StackPanel>
+                <!--BasicInfo-->
+            </StackPanel>
+            <StackPanel>
+                <!--AvgPriceByCity-->
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:PKURBI_HFT_2023241.WpfClient"
         xmlns:viewmodels="clr-namespace:PKURBI_HFT_2023241.WpfClient.WindowViewModels"
         mc:Ignorable="d"
-        Title="TenantWindow" Height="450" Width="800">
+        Title="TenantWindow" Height="450" Width="800"
+        WindowState="Maximized"
+        WindowStyle="ThreeDBorderWindow">
     <Window.DataContext>
         <viewmodels:TenantWindowViewModel/>
     </Window.DataContext>
