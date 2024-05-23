@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tenant Manager</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Tenants</h1>
+
+    <div id="formdiv">
+        <label for="tenantname">Tenant name: </label>
+        <input type="text" id="tenantname" />
+        <label for="tenantphone">Tenant phone: </label>
+        <input type="text" id="tenantphone" />
+        <button type="button" onclick="create()">Add Tenant</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label for="tenantnameupdate">Tenant name: </label>
+        <input type="text" id="tenantnameupdate" />
+        <label for="tenantphoneupdate">Tenant phone: </label>
+        <input type="text" id="tenantphoneupdate" />
+        <button type="button" onclick="update()">Update Tenant</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="contentarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="tn_script.js"></script>
+</body>
+</html>
