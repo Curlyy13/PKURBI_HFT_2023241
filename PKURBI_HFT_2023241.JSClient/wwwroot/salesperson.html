@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Salesperson Manager</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Salespeople</h1>
+
+    <div id="formdiv">
+        <label for="salespersonname">Salesperson Name: </label>
+        <input type="text" id="salespersonname" />
+        <label for="salespersonage">Salesperson age: </label>
+        <input type="text" id="salespersonage" />
+        <button type="button" onclick="create()">Add Salesperson</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label for="salespersonnameupdate">Salesperson Name: </label>
+        <input type="text" id="salespersonnameupdate" />
+        <label for="salespersonageupdate">Salesperson age: </label>
+        <input type="text" id="salespersonageupdate" />
+        <button type="button" onclick="update()">Update Salesperson</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="contentarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="sp_script.js"></script>
+</body>
+</html>
