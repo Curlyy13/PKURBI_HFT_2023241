@@ -15,6 +15,21 @@ th{
     background-color: aquamarine;
 }
 
+#updateformdiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 30px;
+    background-color: mediumaquamarine;
+}
+
+    #updateformdiv label, button, input {
+        margin: 5px;
+    }
+
+    #updateformdiv label {
+        font-weight: bolder;
+    }
+
 #formdiv {
     display: flex;
     flex-direction: column;

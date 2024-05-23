@@ -1,5 +1,6 @@
 ﻿let realestates = [];
 let connection = null;
+let realEstateIdToUpdate = -1;
 getdata();
 setupSignalR();
 
@@ -14,6 +15,10 @@ function setupSignalR() {
     });
 
     connection.on("RealEstateDeleted", (user, message) => {
+        getdata();
+    });
+
+    connection.on("RealEstateUpdated", (user, message) => {
         getdata();
     });
 
@@ -48,7 +53,9 @@ async function getdata(){
 function display() {
     document.getElementById('contentarea').innerHTML = "";
     realestates.forEach(t => {
-        document.getElementById('contentarea').innerHTML += "<tr><td>" + t.realEstateId + "</td><td>" + t.realEstateCity + "</td><td>" + t.realEstateValue + "</td><td>" + t.basicArea + "</td><td>" +/*"</td><td>" + t.salesId +*/ `<button type="button" onclick="Remove(${t.realEstateId})">Delete</button>` +"</td></tr>";
+        document.getElementById('contentarea').innerHTML += "<tr><td>" + t.realEstateId + "</td><td>" + t.realEstateCity + "</td><td>" + t.realEstateValue + "</td><td>" + t.basicArea + "</td><td>" +/*"</td><td>" + t.salesId +*/
+            `<button type="button" onclick="Remove(${t.realEstateId})">Delete</button>` +
+            `<button type="button" onclick="showUpdate(${t.realEstateId})">Update</button>` + "</td></tr>";
     });
 }
 
@@ -70,6 +77,25 @@ function create() {
         .catch((error) => { console.error('Error:', error); });
 }
 
+function update() {
+    document.getElementById('updateformdiv').style.display = 'none';
+    let city = document.getElementById('realestatecityupdate').value;
+    let value = document.getElementById('realestatevalueupdate').value;
+    let basicarea = document.getElementById('realestatebasicareaupdate').value;
+    fetch('http://localhost:35487/RealEstate/', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { realEstateCity: city, realEstateValue: value, basicArea: basicarea, realEstateId: realEstateIdToUpdate }),
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+}
+
 function Remove(id) {
     fetch('http://localhost:35487/RealEstate/' + id, {
         method: 'DELETE',
@@ -83,3 +109,10 @@ function Remove(id) {
         .catch((error) => { console.error('Error:', error); });
 }
 
+function showUpdate(id) {
+    document.getElementById('realestatecityupdate').value = realestates.find(t => t['realEstateId'] == id)['realEstateCity'];
+    document.getElementById('realestatevalueupdate').value = realestates.find(t => t['realEstateId'] == id)['realEstateValue'];
+    document.getElementById('realestatebasicareaupdate').value = realestates.find(t => t['realEstateId'] == id)['basicArea'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    realEstateIdToUpdate = id;
+}
