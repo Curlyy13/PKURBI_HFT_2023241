@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Noncrud methods</title>
+</head>
+<body>
+    <!--AvgPriceBySalespersonID(int id)-->
+    <div id="avgprice">
+        <table width="35%">
+            <thead><tr><th>AvgPriceBySalespersonID</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Add meg a ID-ját annak a személynek akinek leszeretnéd kérni az apartanjainak átlagárát:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        1
+                        <input type="radio" id="avgprice_r1" value="1" name="avgprice_radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                        <input type="radio" id="avgprice_r2" value="2" name="avgprice_radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        3
+                        <input type="radio" id="avgprice_r3" value="3" name="avgprice_radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        4
+                        <input type="radio" id="avgprice_r4" value="4" name="avgprice_radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" id="avgprice_submit" value="Lekérdez" onclick="AvgPriceBySalespersonID()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="avgprice_result">Az átlag ára a megadott ID-val rendelkező Salesperson-nek:</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script src="javascripts/noncruds.js"></script>
+</body>
+</html>

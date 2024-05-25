@@ -36,6 +36,8 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
         public ICommand OpenSalesPersonWindowCommand { get; set; }
         public ICommand OpenTenantWindowCommand { get; set; }
 
+        public ICommand OpenNonCrudsWindowCommand { get; set; }
+
         public MainWindowViewModel()
         {
             if (!IsInDesignMode)
@@ -54,6 +56,11 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
                 {
                     TenantWindow tenantWindow = new TenantWindow();
                     tenantWindow.ShowDialog();
+                });
+                OpenNonCrudsWindowCommand = new RelayCommand(() =>
+                {
+                    NonCrudsWindow ncwindow = new NonCrudsWindow();
+                    ncwindow.ShowDialog();
                 });
             }
         }
