@@ -28,19 +28,36 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
         public RestCollection<Tenant> Tenants { get; set; }
 
         public ICommand AvgPriceBySalespersonCommand { get; set; }
+        public ICommand BasicInformationCommand { get; set; }
 
-        private double? avgPrice;
-        public double? AvgPrice
-        {
-            get { return avgPrice; }
-            set { SetProperty(ref avgPrice, Math.Round((double)value,2)); }
-        }
 
+
+        //AvgPriceBySalesperson
         private int salesId;
         public int SalesId
         {
             get {return salesId;}
             set {SetProperty(ref salesId, value);}
+        }
+        private double? avgPrice;
+        public double? AvgPrice
+        {
+            get { return avgPrice; }
+            set { SetProperty(ref avgPrice, Math.Round((double)value, 2)); }
+        }
+
+        //Basicinformation
+        private int estateId;
+        public int EstateId
+        {
+            get { return estateId; }
+            set { SetProperty(ref estateId, value); }
+        }
+        private BasicInfo info;
+        public BasicInfo Info
+        {
+            get { return info; }
+            set { SetProperty(ref info, value); }
         }
 
         public static bool IsInDesignMode
@@ -64,6 +81,10 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
                 {
                     AvgPrice = 0;
                     AvgPrice = rest.Get<double?>(SalesId, "NCRealEstate/AvgPriceBySalespersonID");
+                });
+                BasicInformationCommand = new RelayCommand(() =>
+                {
+                    Info = rest.Get<BasicInfo>(EstateId, "NCRealEstate/BasicInformation");
                 });
             }
         }
