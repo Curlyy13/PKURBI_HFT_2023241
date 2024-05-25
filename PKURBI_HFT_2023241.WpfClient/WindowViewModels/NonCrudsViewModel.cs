@@ -29,7 +29,9 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
 
         public ICommand AvgPriceBySalespersonCommand { get; set; }
         public ICommand BasicInformationCommand { get; set; }
-
+        public ICommand AvgPriceByCityCommand { get; set; }
+        public ICommand MostRealEstatesCommand { get; set; }
+        public ICommand TenantsByCityCommand { get; set; }
 
 
         //AvgPriceBySalesperson
@@ -45,6 +47,7 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
             get { return avgPrice; }
             set { SetProperty(ref avgPrice, Math.Round((double)value, 2)); }
         }
+        /////////////////////////////////////////
 
         //Basicinformation
         private int estateId;
@@ -59,7 +62,56 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
             get { return info; }
             set { SetProperty(ref info, value); }
         }
+        /////////////////////////////////////////
 
+
+        //AvgPriceByCity
+        private List<AvgPrices> prices;
+        public List<AvgPrices> Prices
+        {
+            get { return prices; }
+            set { SetProperty(ref prices, value); }
+        }
+        private bool lbox_visibility;
+        public bool LboxVisibility
+        {
+            get { return lbox_visibility; }
+            set { SetProperty(ref lbox_visibility, value); }
+        }
+
+        /////////////////////////////////////////
+
+
+        //MostRealEstate
+        private List<string> topsalesperson;
+        public List<string> Topsalesperson
+        {
+            get { return topsalesperson; }
+            set { SetProperty (ref topsalesperson, value); }
+        }
+        private bool lbox_visibility_topsales;
+        public bool LboxVisibility_topsales
+        {
+            get { return lbox_visibility_topsales; }
+            set { SetProperty(ref lbox_visibility_topsales, value); }
+        }
+
+        /////////////////////////////////////////
+        //TenantsByCity
+        private List<Tenants> tenants_city;
+        public List<Tenants> Tenants_city
+        {
+            get { return tenants_city; }
+            set { SetProperty(ref tenants_city, value); }
+        }
+        private bool lbox_visibility_tenants;
+        public bool LboxVisibility_tenants
+        {
+            get { return lbox_visibility_tenants; }
+            set { SetProperty(ref lbox_visibility_tenants, value); }
+        }
+
+        /////////////////////////////////////////
         public static bool IsInDesignMode
         {
             get
@@ -85,6 +137,19 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
                 BasicInformationCommand = new RelayCommand(() =>
                 {
                     Info = rest.Get<BasicInfo>(EstateId, "NCRealEstate/BasicInformation");
+                });
+                AvgPriceByCityCommand = new RelayCommand(() =>
+                {
+                    Prices = rest.Get<AvgPrices>("NCRealEstate/AvgPriceByCity");
+                    LboxVisibility = true;
+                });
+                MostRealEstatesCommand = new RelayCommand(() => {
+                    Topsalesperson = rest.Get<string>("NCSalesperson/MostRealEstates");
+                    LboxVisibility_topsales = true;
+                });
+                TenantsByCityCommand = new RelayCommand(() => {
+                    Tenants_city = rest.Get<Tenants>("NCTenant/TenantsByCity");
+                    LboxVisibility_tenants = true;
                 });
             }
         }

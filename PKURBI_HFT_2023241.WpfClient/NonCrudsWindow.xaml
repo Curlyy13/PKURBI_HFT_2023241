@@ -12,6 +12,9 @@
     <Window.DataContext>
         <viewmodels:NonCrudsViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="lbox_visibConvert"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -20,21 +23,21 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Aqua" BorderThickness="0.5">
+        <Border BorderBrush="DarkSlateGray" BorderThickness="0.5">
             <StackPanel Grid.Column="0">
-                <Label Content="AvgPriceBySalespersonId" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
+                <Label Content="AvgPriceBySalespersonId" BorderBrush="DarkSlateGray" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
                 <Label Content="Enter the ID: " HorizontalContentAlignment="Center" FontSize="15"/>
-                <TextBox Text="{Binding SalesId}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="2" Margin="10,5,10,10"/>
-                <Button Content="Send" Command="{Binding AvgPriceBySalespersonCommand}" FontWeight="SemiBold" Width="50"/>
+                <TextBox Text="{Binding SalesId}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="2" Margin="10,5,10,10" FontSize="15"/>
+                <Button Content="Send" Command="{Binding AvgPriceBySalespersonCommand}" FontWeight="SemiBold" Width="75" Height="30"/>
                 <Label Content="{Binding AvgPrice}" ContentStringFormat="Átlagár: {0}" FontSize="25" HorizontalContentAlignment="Center" Padding="20" Margin="0,20,0,0"/>
             </StackPanel>
         </Border>
-        <Border BorderBrush="Aqua" BorderThickness="0.5" Grid.Column="1">
+        <Border BorderBrush="DarkSlateGray" BorderThickness="0.5" Grid.Column="1">
             <StackPanel>
-                <Label Content="BasicInformation" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
+                <Label Content="BasicInformation" BorderBrush="DarkSlateGray" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
                 <Label Content="Enter the ID: " HorizontalContentAlignment="Center" FontSize="15"/>
-                <TextBox Text="{Binding EstateId}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="2" Margin="10,5,10,10"/>
-                <Button Content="Send" Command="{Binding BasicInformationCommand}" FontWeight="SemiBold" Width="50" HorizontalContentAlignment="Stretch"/>
+                <TextBox Text="{Binding EstateId}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="2" Margin="10,5,10,10" FontSize="15"/>
+                <Button Content="Send" Command="{Binding BasicInformationCommand}" FontWeight="SemiBold" Width="75" Height="30"/>
                 <Label Padding="5" Content="{Binding Info.Location}" ContentStringFormat="Location: {0}" FontSize="25" HorizontalContentAlignment="Stretch"/>
                 <Label Padding="5" Content="{Binding Info.Value}" ContentStringFormat="Value: {0}" FontSize="25" HorizontalContentAlignment="Stretch"/>
                 <Label Padding="5" Content="{Binding Info.Area}" ContentStringFormat="Area: {0}" FontSize="25" HorizontalContentAlignment="Stretch"/>
@@ -43,22 +46,58 @@
                 <Label Padding="5" Content="{Binding Info.TenantContact}" ContentStringFormat="Contact: {0}" FontSize="25" HorizontalContentAlignment="Stretch"/>
             </StackPanel>
         </Border>
-        <Border BorderBrush="Aqua" BorderThickness="0.5" Grid.Column="2">
+        <Border BorderBrush="DarkSlateGray" BorderThickness="0.5" Grid.Column="2">
             <StackPanel>
-                <Label Content="AvgPriceByCity" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
-
+                <Label Content="AvgPriceByCity" BorderBrush="DarkSlateGray" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
+                <Button Content="Get AvgPrices" Command="{Binding AvgPriceByCityCommand}" Padding="10" Margin="10,10,10,10" FontSize="15" FontWeight="SemiBold"/>
+                <ListBox ItemsSource="{Binding Prices}" BorderThickness="0" Visibility="{Binding LboxVisibility, Converter={StaticResource lbox_visibConvert}}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Label Content="{Binding City}" ContentStringFormat="{}{0}: " FontSize="20" FontWeight="SemiBold"/>
+                                <Label Content="{Binding AvgPrice}" FontSize="20"/> 
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </Border>
-        <Border BorderBrush="Aqua" BorderThickness="0.5" Grid.Column="3">
+        <Border BorderBrush="DarkSlateGray" BorderThickness="0.5" Grid.Column="3">
             <StackPanel>
-                <Label Content="MostRealEstates" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
-
+                <Label Content="MostRealEstates" BorderBrush="DarkSlateGray" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
+                <Button Content="Get Top Salespeople" Command="{Binding MostRealEstatesCommand}" Padding="10" Margin="10,10,10,10" FontSize="15" FontWeight="SemiBold"/>
+                <Label Content="The top 3 Salespeople are: " FontSize="20" FontWeight="SemiBold" Visibility="{Binding LboxVisibility_topsales, Converter={StaticResource lbox_visibConvert}}"/>
+                <ListBox ItemsSource="{Binding Topsalesperson}" BorderThickness="0" Visibility="{Binding LboxVisibility_topsales, Converter={StaticResource lbox_visibConvert}}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Label Content="{Binding}" FontSize="20"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </Border>
-        <Border BorderBrush="Aqua" BorderThickness="0.5" Grid.Column="4">
+        <Border BorderBrush="DarkSlateGray" BorderThickness="0.5" Grid.Column="4">
             <StackPanel>
-                <Label Content="TenantsByCity" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
-
+                <Label Content="TenantsByCity" BorderBrush="DarkSlateGray" BorderThickness="1" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="20"/>
+                <Button Content="Get Tenants" Command="{Binding TenantsByCityCommand}" Padding="10" Margin="10,10,10,10" FontSize="15" FontWeight="SemiBold"/>
+                <ListBox ItemsSource="{Binding Tenants_city}" Visibility="{Binding LboxVisibility_tenants, Converter={StaticResource lbox_visibConvert}}" Padding="5" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="BorderBrush" Value="DarkGray" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,5">
+                                <Label Content="{Binding Name}" FontSize="20" />
+                                <Label Content="{Binding EstateCount}" ContentStringFormat="Owned Estates: {0}" FontSize="15" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </Border>
     </Grid>

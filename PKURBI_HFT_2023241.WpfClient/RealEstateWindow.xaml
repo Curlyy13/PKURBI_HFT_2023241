@@ -16,15 +16,14 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <ListBox Grid.Column="0" ItemsSource="{Binding RealEstates}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedRealEstate}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel Background="Azure">
-                        <Label Content="{Binding RealEstateId}" ContentStringFormat="ID: {0}" HorizontalAlignment="Left"/>
-                        <Label Content="{Binding RealEstateCity}" ContentStringFormat="City: {0}" HorizontalAlignment="Center" />
-                        <Label Content="{Binding RealEstateValue}" ContentStringFormat="Value: {0}" HorizontalContentAlignment="Right" HorizontalAlignment="Right"/>
+                        <Label Content="{Binding RealEstateId}" ContentStringFormat="ID: {0}" HorizontalAlignment="Left" FontSize="20"/>
+                        <Label Content="{Binding RealEstateCity}" ContentStringFormat="City: {0}" HorizontalAlignment="Center" FontSize="20"/>
+                        <Label Content="{Binding RealEstateValue}" ContentStringFormat="Value: {0}" HorizontalContentAlignment="Right" HorizontalAlignment="Right" FontSize="20"/>
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -40,22 +39,6 @@
             <Button Content="Delete" Command="{Binding DeleteRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
             <Button Content="Update" Command="{Binding UpdateRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
             <Button Content="AvgPriceByCity" Padding="10" Margin="10" FontSize="20"/>
-        </StackPanel>
-        <StackPanel Grid.Column="2">
-            <Label Content="Non-cruds" HorizontalAlignment="Stretch" Padding="7" Background="Azure" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <!--AvgPriceBySalesPerson-->
-                <Label Content="Salesperson ID: " HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5,0,0,0"/>
-                <TextBox Text="{Binding SelectedRealEstate}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Width="40" Margin="5,0,10,0" Padding="5"/>
-                <Button Content="Submit" Command="{Binding }"/>
-            </WrapPanel>
-            <Label ContentStringFormat="AvgPrice: {0}" Content="{Binding }" HorizontalAlignment="Center"/>
-            <StackPanel>
-                <!--BasicInfo-->
-            </StackPanel>
-            <StackPanel>
-                <!--AvgPriceByCity-->
-            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
