@@ -125,9 +125,9 @@ namespace PKURBI_HFT_2023241.WpfClient.WindowViewModels
         {
             if (!IsInDesignMode)
             {
-                RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate", "hub");
-                Salespeople = new RestCollection<Salesperson>("http://localhost:35487/", "Salesperson", "hub");
-                Tenants = new RestCollection<Tenant>("http://localhost:35487/", "Tenant", "hub");
+                //RealEstates = new RestCollection<RealEstate>("http://localhost:35487/", "RealEstate", "hub");
+                //Salespeople = new RestCollection<Salesperson>("http://localhost:35487/", "Salesperson", "hub");
+                //Tenants = new RestCollection<Tenant>("http://localhost:35487/", "Tenant", "hub");
                 var rest = new RestService("http://localhost:35487/");
                 AvgPriceBySalespersonCommand = new RelayCommand(() =>
                 {

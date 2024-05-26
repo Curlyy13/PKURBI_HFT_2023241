@@ -1,0 +1,58 @@
+﻿#row1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5px;
+}
+
+#avgprice_table{
+    height: 100%;
+    width: 100%;
+    vertical-align: central;
+    border-collapse: collapse;
+}
+
+#basicinformation_table {
+    height: 100%;
+    width: 100%;
+    vertical-align: central;
+    border-collapse: collapse;
+}
+
+table thead tr th{
+    border: 3px dashed black;
+}
+
+table{
+    border: 1px solid black;
+}
+#basicinformation_table tr{
+    border: 1px dashed black;
+}
+
+#row2 {
+    margin: 40px,5px,5px,5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#avgpricebycity_table {
+    height: 100%;
+    width: 100%;
+    vertical-align: central;
+    border-collapse: collapse;
+}
+
+#mostrealestates_table {
+    height: 100%;
+    width: 100%;
+    vertical-align: central;
+    border-collapse: collapse;
+}
+
+#tenantsbycity_table {
+    height: 100%;
+    width: 100%;
+    vertical-align: central;
+    border-collapse: collapse;
+}
+
