@@ -67,8 +67,8 @@ async function start() {
 };
 
 async function getdata() {
-    getAvgPriceBySalesperson(id);
-    GetBasicInformationID(id);
+    //getAvgPriceBySalesperson(id);
+    //GetBasicInformationID(id);
     //getAvgPriceByCity();
     //getMostRealEstates();
     //getTenantsEstate();
@@ -95,11 +95,11 @@ async function GetBasicInformationID(id) {
 
 
 async function AvgPriceBySalespersonID() {
-    let givenId = -1;
+    let givenId = 0;
     if (document.getElementById('avgprice_r1').checked) { givenId = Number(document.getElementById('avgprice_r1').value); }
     else if (document.getElementById('avgprice_r2').checked) { givenId = Number(document.getElementById('avgprice_r2').value); }
     else if (document.getElementById('avgprice_r3').checked) { givenId = Number(document.getElementById('avgprice_r3').value); }
-    else { givenId = Number(document.getElementById('avgprice_r4').value); }
+    else if (document.getElementById('avgprice_r4').checked){ givenId = Number(document.getElementById('avgprice_r4').value); }
     AvgPriceBySalesperson = await getAvgPriceBySalesperson(givenId);
     Number(AvgPriceBySalesperson);
     AvgPriceBySalesperson = Math.round(AvgPriceBySalesperson);

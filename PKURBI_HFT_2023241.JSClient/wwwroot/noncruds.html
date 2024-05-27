@@ -7,6 +7,9 @@
 </head>
 <body>
     <!--AvgPriceBySalespersonID(int id)-->
+    <div id="page_top">
+        <a href = "index.html">Back To MainPage</a >
+    </div>
     <div id="row1">
         <div id="avgprice">
             <table id="avgprice_table">
@@ -61,7 +64,7 @@
                 <thead><tr><th colspan="2">BasicInformation</th></tr></thead>
                 <tbody>
                     <tr>
-                        <th><input type="number" id="basicinformation_id"/></th>
+                        <th><input type="number" id="basicinformation_id" /></th>
                         <th><input type="button" id="basicinformation_submit" value="Lekérdez" onclick="BasicInformationID()" /></th>
                     </tr>
                     <tr>
@@ -97,7 +100,7 @@
             <table id="avgpricebycity_table">
                 <thead><tr><td colspan="2">AvgPriceByCity</td></tr></thead>
                 <tbody id="avgpricebycity_body">
-                    <tr><th colspan="2"><input type="button" value="Lekérdez" onclick="AvgPriceByCities()"/></th></tr>
+                    <tr><th colspan="2"><input type="button" value="Lekérdez" onclick="AvgPriceByCities()" /></th></tr>
                 </tbody>
             </table>
         </div>
@@ -111,14 +114,13 @@
         </div>
         <div id="tenantsbycity">
             <table id="tenantsbycity_table">
-                <thead><tr><td>TenantsByCity</td></tr></thead>
+                <thead><tr><td colspan="2">TenantsByCity</td></tr></thead>
                 <tbody id="tenantsbycity_body">
                     <tr><th colspan="2"><input type="button" value="Lekérdez" onclick="TenantsByEstates()" /></th></tr>
                 </tbody>
             </table>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="javascripts/noncruds.js"></script>
 </body>

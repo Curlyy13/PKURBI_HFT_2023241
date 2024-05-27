@@ -20,6 +20,7 @@
 
 table thead tr th{
     border: 3px dashed black;
+    text-align: center;
 }
 
 table{
@@ -30,6 +31,7 @@ table{
 }
 
 #row2 {
+    margin-top: 100px;
     margin: 40px,5px,5px,5px;
     display: flex;
     justify-content: space-evenly;
@@ -40,6 +42,9 @@ table{
     width: 100%;
     vertical-align: central;
     border-collapse: collapse;
+    border: 0px;
+    text-align: center;
+    font-size: 15px;
 }
 
 #mostrealestates_table {
@@ -47,12 +52,83 @@ table{
     width: 100%;
     vertical-align: central;
     border-collapse: collapse;
+    border: 0px;
+    text-align: center;
+    font-size: 15px;
 }
 
 #tenantsbycity_table {
     height: 100%;
     width: 100%;
     vertical-align: central;
+    border: 0px;
+    text-align: center;
+    font-size: 15px;
     border-collapse: collapse;
 }
 
+#tenantsbycity_table thead tr td {
+        font-weight: bold;
+        padding: 10px;
+}
+
+#mostrealestates_table thead tr td {
+    font-weight: bold;
+    padding: 10px;
+}
+
+#avgpricebycity_table thead tr td {
+    font-weight: bold;
+    padding: 10px;
+}
+
+#tenantsbycity_body {
+    padding: 10px;
+    font-size: 15px;
+}
+
+#mostrealestates_body{
+    padding: 10px;
+    font-size: 15px;
+}
+
+#avgpricebycity_body{
+    padding: 10px;
+    font-size: 15px;
+}
+
+th{
+    font-weight: normal;
+}
+
+a{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+#page_top {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+    font-size: 40px;
+    padding: 10px;
+    position: absolute;
+}
+
+a{
+    font-size: 20px;
+    text-align: right;
+    padding: 17px;
+    animation: textcolorchange 5s infinite alternate;
+}
+
+@keyframes textcolorchange {
+    from {
+        color: dimgray;
+    }
+
+    to {
+        color: darkorange;
+    }
+}

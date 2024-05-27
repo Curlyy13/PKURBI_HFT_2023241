@@ -38,7 +38,6 @@
             <Button Content="Create" Command="{Binding CreateRealEstateCommand}" Padding="10" Margin="10" FontSize="20" VerticalAlignment="Center"/>
             <Button Content="Delete" Command="{Binding DeleteRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
             <Button Content="Update" Command="{Binding UpdateRealEstateCommand}" Padding="10" Margin="10" FontSize="20"/>
-            <Button Content="AvgPriceByCity" Padding="10" Margin="10" FontSize="20"/>
         </StackPanel>
     </Grid>
 </Window>
