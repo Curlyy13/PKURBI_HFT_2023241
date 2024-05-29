@@ -1,134 +1,116 @@
-﻿#row1 {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 5px;
+﻿body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-#avgprice_table{
-    height: 100%;
-    width: 100%;
-    vertical-align: central;
-    border-collapse: collapse;
+a {
+    text-decoration: none;
+    color: #ff9800;
 }
 
-#basicinformation_table {
-    height: 100%;
-    width: 100%;
-    vertical-align: central;
-    border-collapse: collapse;
-}
+    a:hover {
+        color: #f57c00;
+    }
 
-table thead tr th{
-    border: 3px dashed black;
+#page_top {
+    background-color: #ffb74d;
+    padding: 15px;
     text-align: center;
+    border-bottom: 2px solid #ef6c00;
 }
 
-table{
-    border: 1px solid black;
-}
-#basicinformation_table tr{
-    border: 1px dashed black;
+    #page_top a {
+        color: #e65100;
+        font-size: 20px;
+    }
+
+#row1, #row2 {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 10%;
 }
 
 #row2 {
-    margin-top: 100px;
-    margin: 40px,5px,5px,5px;
-    display: flex;
-    justify-content: space-evenly;
+    margin-top: 40px;
 }
 
-#avgpricebycity_table {
-    height: 100%;
+table {
     width: 100%;
-    vertical-align: central;
     border-collapse: collapse;
-    border: 0px;
-    text-align: center;
-    font-size: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
-#mostrealestates_table {
-    height: 100%;
-    width: 100%;
-    vertical-align: central;
-    border-collapse: collapse;
-    border: 0px;
-    text-align: center;
-    font-size: 15px;
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
 }
 
-#tenantsbycity_table {
-    height: 100%;
-    width: 100%;
-    vertical-align: central;
-    border: 0px;
-    text-align: center;
-    font-size: 15px;
-    border-collapse: collapse;
+th {
+    background-color: #ff9800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-#tenantsbycity_table thead tr td {
-        font-weight: bold;
-        padding: 10px;
+td {
+    background-color: #ffffff;
+    color: #333;
 }
 
-#mostrealestates_table thead tr td {
+tbody tr:nth-child(even) td {
+    background-color: #ffe0b2;
+}
+
+input[type="radio"] {
+    margin-left: 10px;
+}
+
+input[type="submit"], input[type="button"] {
+    background-color: #ff9800;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #f57c00;
+}
+
+label {
     font-weight: bold;
-    padding: 10px;
+    color: #ff9800;
 }
 
-#avgpricebycity_table thead tr td {
+#avgprice, #basicInformation, #avgpricebycity, #mostrealestates, #tenantsbycity {
+    width: 45%;
+    padding: 25px;
+    border: 2px solid #ffb74d;
+    border-radius: 8px;
+    background-color: #fff3e0;
+}
+
+#avgprice_table th, #basicinformation_table th {
+    text-align: center;
+}
+
+#avgprice_result {
+    color: #e53935;
     font-weight: bold;
-    padding: 10px;
 }
 
-#tenantsbycity_body {
-    padding: 10px;
-    font-size: 15px;
-}
-
-#mostrealestates_body{
-    padding: 10px;
-    font-size: 15px;
-}
-
-#avgpricebycity_body{
-    padding: 10px;
-    font-size: 15px;
-}
-
-th{
-    font-weight: normal;
-}
-
-a{
-    position: fixed;
-    right: 0;
-    bottom: 0;
-}
-
-#page_top {
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 10px;
-    font-size: 40px;
-    padding: 10px;
-    position: absolute;
-}
-
-a{
-    font-size: 20px;
-    text-align: right;
-    padding: 17px;
-    animation: textcolorchange 5s infinite alternate;
-}
-
-@keyframes textcolorchange {
-    from {
-        color: dimgray;
-    }
-
-    to {
-        color: darkorange;
-    }
+#bi_loc, #bi_val, #bi_area, #bi_salp, #bi_tenant, #bi_cont {
+    text-align: left;
+    background-color: #fff3e0;
+    color: #e65100;
+    font-weight: bold;
 }
